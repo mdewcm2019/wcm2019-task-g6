@@ -579,6 +579,14 @@ From git@github.com:schacon/simplegit
 <p><img alt="" height="599" src="/images/ssh1.png" width="295"/></p>
 <p><span>在SSH and GPG keys的SSH Key點擊new ssh key並貼上所複製的的內容</span></p>
 <p><span><img alt="" height="502" src="/images/ssh-2.png" width="1000"/></span></p>
+<p><strong>利用ssh提交推送</strong></p>
+<p>首先要確認倉儲是以ssh的方式clone</p>
+<p>利用以下指令clone</p>
+<p>git clone git@github.com:(mdekmol/github分組網址)</p>
+<p>或直接使用SciTE編輯器開啟個人倉儲的.git檔案裡面的config檔案</p>
+<p>把url = https://github.com/<span>(</span><span>mdekmol/github分組網址)</span></p>
+<p>改成url = git@github.com:<span>(</span><span>mdekmol/github分組網址)</span></p>
+<p>完成後直接提交推送即可不用打帳號密碼就能push。</p>
 <pre class="highlight"><code class="language-console" data-lang="console"><br/><br/><br/><br/><br/><br/><br/></code></pre>
 <p></p>
 <p></p>
