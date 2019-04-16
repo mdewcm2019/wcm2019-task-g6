@@ -1,6 +1,13 @@
 <h1>簡介</h1>
 <p>CMSimfly (<a href="https://github.com/chiamingyen/cmsimfly">https://github.com/chiamingyen/cmsimfly)</a> 是一套簡單的網際內容管理系統, 採用 Flask 網際框架, 以 Beautifulsoup 解讀分頁內容.</p>
 <p><img alt="" height="471" src="/images/gocycle4.png" width="587"/></p>
+<h2>Blogger</h2>
+<p>團隊部落格&gt; <a href="https://cd2019a-task1-2019cda-t1-g6.blogspot.com/">Here！</a></p>
+<h1>Team Member</h1>
+<p>40623153  廖祥佑</p>
+<p>40623155  陳霖</p>
+<p>40623156  林聖翰</p>
+<p>40623157  李昀霖</p>
 <h1>目錄結構</h1>
 <p>CMSimfly 的動態系統採用 Python3 + Flask 建構, 並且利用 Beatifulsoup 解讀位於 contig 目錄中的 content.htm 超文件檔案.</p>
 <p>content.htm 檔案可以透過動態系統中的 generate_pages 功能, 將超文件轉為位於 content 目錄中的個別頁面檔案.</p>
@@ -449,10 +456,15 @@ COPY TO CLIPBOARD	</pre>
 <p>各頁面標題目前不支援特殊符號, 例如: "/", "?" 等, 若已經發生程式無法解讀頁面的情況, 只能從編輯 config/content.htm 下手, 若系統位於遠端, 則後續必須要再設法提供一個額外的編輯 config/content.htm 檔案的網際連結功能.</p>
 <h4>Video 引用不支援內部引用</h4>
 <p>tinymce 中插入 video 的小視窗, 要移除引用的圖像與連結, 因為一般建議不要在內容中存入 .mp4 的影片資料, 而只接受引入影片 URL 連結.</p>
+<<<<<<< HEAD
 <h4>當ungit推送時出現錯誤內容</h4>
 <p>可在隨身系統中的satrt.bat加入<span>set USERPROFILE=%Disk%:\home</span></p>
 <p>使得ungit能找到<span>y:\home中的使用者目錄</span></p><h1>課程筆記</h1>
 <h2>20190326</h2>
+=======
+<h1>課程筆記</h1>
+<h2>網際網路故障排除</h2>
+>>>>>>> a4799a3c26746917e515b1a93ab817cdc15c0ad1
 <p>遇到學校伺服器IP掛掉問題<br/>Step1.關閉網路第四版協定</p>
 <p><img alt="" height="708" src="/images/SfF6oN78hU.png" width="1244"/><img alt="" height="708" src="/images/SfF6oN78hU.png" width="1244"/></p>
 <p>打開IPV6</p>
@@ -462,9 +474,41 @@ COPY TO CLIPBOARD	</pre>
 <p>修改proxy內容</p>
 <p>[2001:288:6004:17::4]</p>
 <p><img alt="" height="386" src="/images/rundll32_9PmorqmYBC.png" width="443"/><img alt="" height="518" src="/images/dllhost_QcMKXfshAM.png" width="630"/></p>
+<p>完成修改後便能成功上網。</p>
+<p></p>
 <p>完成修改後便能成功上網</p>
+<<<<<<< HEAD
 <p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <h2>Git筆記重點整理</h2>
+=======
+<h2>Git筆記重點整理</h2>
+<p>線上觀看手冊</p>
+<p><a href="https://git-scm.com/book/zh-tw/v2">https://git-scm.com/book/zh-tw/v2</a></p>
+<h3>開始</h3>
+<h4>版本控制系統</h4>
+<p><img alt="" height="683" src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g6/images/p01.png" width="800"/></p>
+<p>利用RCS指令可控制任一版本資料，其<span>工作原理是在硬碟上保存一堆特殊格式的補丁集合，通過套用功能，便可以重新產生出每個版本的檔案內容。</span></p>
+<p><span>Git控制方法分成</span><span>集中化與分散式版本控制系統</span></p>
+<p><span>集中化版本控制系統</span></p>
+<p><span><img alt="" height="556" src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g6/images/p02.png" width="800"/></span></p>
+<p>好處：</p>
+<p>1.清楚了解分組內各成員所做進度<br/>2.管理員統一控制所有開發者權限<br/>3.各用戶端統一使用統一版本系統，好管理<br/>壞處：<br/>1.中央伺服器發生故障，各開發者便無法協同合作<br/>2.統一集中資料會有遺失資料風險</p>
+<p>分散式版本控制系統<br/><br/>因集中化控制的不便，進而衍化出分散式控制系統</p>
+<p><img alt="" height="800" src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g6/images/p03.png" width="668"/><br/>優點：<br/>1.任一協同伺服器故障，事後都能以任一用戶端鏡像還原<br/>2.能與許多遠端倉儲互動，使不同地方群組能在不一樣的地方完成同一專案協同合作<br/>3.階層式的分工合作<br/><br/></p>
+<p>-------------------------------------------------------------------------------------------------------------</p>
+<p><strong>Git完整性</strong></p>
+<p><br/><span>1.Git 中所有的物件在儲存前都會被計算校驗碼（checksum）並以校驗碼參照物件。</span><br/>2.計算較驗碼<span>機制稱為 SHA-1 雜湊演算法。 一個校驗碼是由 40 個 16 進位的字母（0–9 和 a–f）所組成，Git 會根據檔案的內容和資料夾的結構來計算。 <br/>3. Git 的資料庫內，每個檔案都是用其內容的校驗碼來儲存，而不是使用檔名。</span></p>
+<p><strong>Git狀態</strong></p>
+<p>1.已提交（committed）：<br/><span>檔案己安全地存在你的本地端資料庫。</span></p>
+<p>2.<span>已修改（modified）：<br/>檔案已被修改但尚未提交到本地端資料庫。 <br/></span></p>
+<p>3.<span>已預存（staged）：<br/>已預存代表這檔案將會被存到下次你提交的快照中。<br/><br/></span></p>
+<p><span><img alt="" height="441" src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g6/images/p04.png" width="800"/></span></p>
+<p><strong>Git工作流程</strong></p>
+<p>1.你在你工作目錄修改檔案。</p>
+<p>2.預存檔案，將檔案的快照新增到預存區。</p>
+<p>3.做提交的動作，這會讓存在預存區的檔案快照永久地儲存在 Git 目錄中。</p>
+<h3>Git booK L9</h3>
+>>>>>>> a4799a3c26746917e515b1a93ab817cdc15c0ad1
 <p><br/>9.1<a href="https://git-scm.com/book/zh-tw/v2/Git-and-Other-Systems-Git-as-a-Client">Git as a Client</a></p>
 <p><span>git svn：</span><span>Git中所有Subversion橋接指令的基本指令都是</span><code>git svn</code><span><span>。</span><span>它需要相當多的指令，因此我們將在完成一些簡單的工作流程時展示最常見的指令。當用戶使用git svn時，需特別注意避免同時與Git遠端倉儲交互操作使用。</span></span></p>
 <p><br/>10.1<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Plumbing-and-Porcelain">Plumbing and Porcelain</a></p>
@@ -488,7 +532,17 @@ COPY TO CLIPBOARD	</pre>
 <h4><code class="language-console" data-lang="console">$ cat .git/HEAD</code></h4>
 <h4><code class="language-console" data-lang="console">ref: refs/heads/test</code></h4>
 <pre class="highlight"></pre>
+<<<<<<< HEAD
 <p><br/>10.4<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Packfiles">Packfiles</a> <br/>10.5<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-The-Refspec">The Refspec</a></p>
+=======
+<p><br/>10.4<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Packfiles">Packfiles</a></p>
+<p><strong>使用 git cat-file 命令查看這個文件大小</strong></p>
+<p>$ git cat-file -s 033b4468fa6b2a9547a70d88d1bbe8bf3f9ed0d5<br/>22044</p>
+<p><br/><strong>使用git gc打包文件</strong></p>
+<p><br/>$ git gc Counting objects: 18, done. Delta compression using up to 8 threads. Compressing objects: 100% (14/14), done. Writing objects: 100% (18/18), done. Total 18 (delta 3), reused 0 (delta 0)</p>
+<p></p>
+<p><br/>10.5<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-The-Refspec">The Refspec</a></p>
+>>>>>>> a4799a3c26746917e515b1a93ab817cdc15c0ad1
 <p>The Refspec</p>
 <p>.git / config文件中添加遠端origin的名稱，遠程存儲庫的URL以及用於獲取的refspec</p>
 <pre class="highlight"><code class="language-ini" data-lang="ini">[remote "origin"]
@@ -521,19 +575,68 @@ From git@github.com:schacon/simplegit
 <p><strong><code>GIT_COMMITTER_DATE</code></strong><span><span><span> </span>用於“提交者”字段中的日期。</span></span></p>
 <br/>10.9<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Summary">Summary</a>
 <p><span>Git為一個非常強大的系統工具，可以輕鬆使用它作為VCS。本章介紹了許多管道指令 - 這些指令使用戶在使用上更家簡單。</span></p>
+<h1>課程內容</h1>
 </div>
+<h2>ssh.key操作步驟</h2>
+<p><strong>關閉彈出的登入窗</strong></p>
+<p>開啟start.bat後輸入  git config --edit --system</p>
+<p>開啟編輯器，編輯git的設定</p>
+<p>使用按鍵H/J/K/L控制方向，之後按a進入編輯模式</p>
+<p>就可以按Backspace刪除最後一行</p>
+<p>如下</p>
+<p><img alt="" height="533" src="/images/ssh.png" width="1008"/></p>
+<p>刪除後按Esc鍵離開編輯模式</p>
+<p>輸入2個冒號後，再輸入wq存檔並關閉即可</p>
+<p>直接離開則輸入exit即可退出</p>
+<p>在可攜系統的程式視窗輸入sh (可至y:\git\bin中確認)</p>
+<p>執行 git 的 shell並輸入(ssh-keygen -t rsa -b 4096 -C "This is my key")</p>
+<p>將會建立Private 與 Public金鑰至y:\home\.ssh\id_rsa與id_rsa.pub將 id_rsa.pub 的內容複製貼上至Github 帳號的Settings</p>
+<p>如下</p>
+<p><img alt="" height="599" src="/images/ssh1.png" width="295"/></p>
+<p><span>在SSH and GPG keys的SSH Key點擊new ssh key並貼上所複製的的內容</span></p>
+<p><span><img alt="" height="502" src="/images/ssh-2.png" width="1000"/></span></p>
+<p><strong>利用ssh提交推送</strong></p>
+<p>首先要確認倉儲是以ssh的方式clone</p>
+<p>利用以下指令clone</p>
+<p>git clone git@github.com:(mdekmol/github分組網址)</p>
+<p>或直接使用SciTE編輯器開啟個人倉儲的.git檔案裡面的config檔案</p>
+<p>把url = https://github.com/<span>(</span><span>mdekmol/github分組網址)</span></p>
+<p>改成url = git@github.com:<span>(</span><span>mdekmol/github分組網址)</span></p>
+<p>完成後直接提交推送即可不用打帳號密碼就能push。</p>
 <p></p>
-<pre class="highlight"><code class="language-console" data-lang="console"><br/><br/><br/><br/><br/><br/><br/></code></pre>
+<h2><span>配置可攜程式環境</span></h2>
+<p><span><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/OUIzI9cQQIc" width="560"></iframe></span></p>
+<h2>Git常用指令</h2>
+<pre class="highlight"><code class="language-console" data-lang="console"><br/><br/><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/w0R90n4xpMs" width="560"></iframe><br/><br/></code></pre>
+<p>1.Git  clone    下載倉儲(已下載)</p>
+<p>2.Git  add .   新增檔案</p>
+<p>3.Git  commit –m”    ”    提交更動名字</p>
+<p>4.Git<span style="color: #626262;"> </span>push 推送遠端</p>
+<pre class="highlight"><code class="language-console" data-lang="console"><br/><br/><br/><br/></code></pre>
 <p></p>
+<p></p>
+<p></p>
+<h1>ungit</h1>
+<h2>使用方法</h2>
+<p></p>
+<<<<<<< HEAD
 <p>=======</p>
 <h1>ungit使用方法</h1>
+=======
+>>>>>>> a4799a3c26746917e515b1a93ab817cdc15c0ad1
 <p> git add . 後使用 ungit</p>
-<p><img src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g5/images/ApplicationFrameHost_1fEDHwoqFq.png"/></p>
-<p><span>輸入這次提交的主題後按下commit</span></p>
-<p><span><img src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g5/images/ApplicationFrameHost_mOu4EkehpQ.png"/></span></p>
+<p><img alt="" height="758" src="/images/1.png" width="794"/></p>
+<p>輸入這次提交的主題後按下commit</p>
+<p><img alt="" height="265" src="/images/2.png" width="451"/></p>
 <p><span>在按一次commit後的分支點擊push</span></p>
 <p><span><img alt="" height="632" src="/images/未命名.png" width="869"/></span></p>
 <p>再輸入使用者帳號密碼後推送完成</p>
+<<<<<<< HEAD
 <p>!!輸入完成後要直接按"Submit"扭，使用鍵盤的"Enter"無法完成!!</p>
 <p><img src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g5/images/ApplicationFrameHost_b08aFeUUTX.png"/></p>
 <p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; d72756a82c290f232962f331f85ffee18201161c</p>
+=======
+<p>輸入完成後直接按下Submit即可</p>
+<p><img alt="" height="290" src="/images/3.png" width="596"/></p>
+<p></p>
+>>>>>>> a4799a3c26746917e515b1a93ab817cdc15c0ad1

@@ -78,8 +78,7 @@ $(document).ready(doSearch);
 
 </ul>
 </confmenu></header>
-<<<<<<< HEAD
-<div class='container'><nav><ul id='css3menu1' class='topmenu'><div class="tipue_search_group"><input style="width: 6vw;" type="text" name="q" id="tipue_search_input" pattern=".{2,}" title="Press enter key to search" required></div><li><a href='簡介.html'>簡介</a><li><a href='目錄結構.html'>目錄結構</a><li><a href='頁面編輯.html'>頁面編輯</a><ul><li><a href='插入程式碼.html'>插入程式碼</a><ul><li><a href='Java 程式碼.html'>Java 程式碼</a><li><a href='Python 程式碼.html'>Python 程式碼</a><li><a href='C或C++程式碼.html'>C或C++程式碼</a><li><a href='Lua 程式碼.html'>Lua 程式碼</a><li><a href='Javascript 程式碼.html'>Javascript 程式碼</a><li><a href='Html 原始碼.html'>Html 原始碼</a></li></li></ul></ul><li><a href='網際簡報.html'>網際簡報</a><li><a href='網誌編輯.html'>網誌編輯</a><li><a href='已知錯誤.html'>已知錯誤</a><li><a href='課程筆記.html'>課程筆記</a><ul><li><a href='20190326.html'>20190326</a><li><a href='Git筆記重點整理.html'>Git筆記重點整理</a></li></ul><li><a href='ungit使用方法.html'>ungit使用方法</a></li></ul></nav><section><div id="tipue_search_content">20190326 << <a href='20190326.html'>Previous</a> <a href='ungit使用方法.html'>Next</a> >> ungit使用方法<br /><h1>Git筆記重點整理</h1>
+<div class='container'><nav><ul id='css3menu1' class='topmenu'><div class="tipue_search_group"><input style="width: 6vw;" type="text" name="q" id="tipue_search_input" pattern=".{2,}" title="Press enter key to search" required></div><li><a href='簡介.html'>簡介</a><ul><li><a href='Blogger.html'>Blogger</a></li></ul><li><a href='Team Member.html'>Team Member</a><li><a href='目錄結構.html'>目錄結構</a><li><a href='頁面編輯.html'>頁面編輯</a><ul><li><a href='插入程式碼.html'>插入程式碼</a><ul><li><a href='Java 程式碼.html'>Java 程式碼</a><li><a href='Python 程式碼.html'>Python 程式碼</a><li><a href='C或C++程式碼.html'>C或C++程式碼</a><li><a href='Lua 程式碼.html'>Lua 程式碼</a><li><a href='Javascript 程式碼.html'>Javascript 程式碼</a><li><a href='Html 原始碼.html'>Html 原始碼</a></li></li></ul></ul><li><a href='網際簡報.html'>網際簡報</a><li><a href='網誌編輯.html'>網誌編輯</a><li><a href='已知錯誤.html'>已知錯誤</a><li><a href='課程筆記.html'>課程筆記</a><ul><li><a href='網際網路故障排除.html'>網際網路故障排除</a><li><a href='Git筆記重點整理.html'>Git筆記重點整理</a><ul><li><a href='開始.html'>開始</a><li><a href='Git booK L9.html'>Git booK L9</a></li></li></ul></ul><li><a href='課程內容.html'>課程內容</a><ul><li><a href='ssh.key操作步驟.html'>ssh.key操作步驟</a><li><a href='配置可攜程式環境.html'>配置可攜程式環境</a><li><a href='Git常用指令.html'>Git常用指令</a></li></ul><li><a href='ungit.html'>ungit</a><ul><li><a href='使用方法.html'>使用方法</a></li></ul></nav><section><div id="tipue_search_content">開始 << <a href='開始.html'>Previous</a> <a href='課程內容.html'>Next</a> >> 課程內容<br /><h1>Git booK L9</h1>
 <p><br/>9.1<a href="https://git-scm.com/book/zh-tw/v2/Git-and-Other-Systems-Git-as-a-Client">Git as a Client</a></p>
 <p><span>git svn：</span><span>Git中所有Subversion橋接指令的基本指令都是</span><code>git svn</code><span><span>。</span><span>它需要相當多的指令，因此我們將在完成一些簡單的工作流程時展示最常見的指令。當用戶使用git svn時，需特別注意避免同時與Git遠端倉儲交互操作使用。</span></span></p>
 <p><br/>10.1<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Plumbing-and-Porcelain">Plumbing and Porcelain</a></p>
@@ -103,7 +102,13 @@ $(document).ready(doSearch);
 <h4><code class="language-console" data-lang="console">$ cat .git/HEAD</code></h4>
 <h4><code class="language-console" data-lang="console">ref: refs/heads/test</code></h4>
 <pre class="highlight"></pre>
-<p><br/>10.4<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Packfiles">Packfiles</a> <br/>10.5<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-The-Refspec">The Refspec</a></p>
+<p><br/>10.4<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Packfiles">Packfiles</a></p>
+<p><strong>使用 git cat-file 命令查看這個文件大小</strong></p>
+<p>$ git cat-file -s 033b4468fa6b2a9547a70d88d1bbe8bf3f9ed0d5<br/>22044</p>
+<p><br/><strong>使用git gc打包文件</strong></p>
+<p><br/>$ git gc Counting objects: 18, done. Delta compression using up to 8 threads. Compressing objects: 100% (14/14), done. Writing objects: 100% (18/18), done. Total 18 (delta 3), reused 0 (delta 0)</p>
+<p></p>
+<p><br/>10.5<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-The-Refspec">The Refspec</a></p>
 <p>The Refspec</p>
 <p>.git / config文件中添加遠端origin的名稱，遠程存儲庫的URL以及用於獲取的refspec</p>
 <pre class="highlight"><code class="language-ini" data-lang="ini">[remote "origin"]
@@ -136,15 +141,4 @@ From git@github.com:schacon/simplegit
 <p><strong><code>GIT_COMMITTER_DATE</code></strong><span><span><span> </span>用於“提交者”字段中的日期。</span></span></p>
 <br/>10.9<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Summary">Summary</a>
 <p><span>Git為一個非常強大的系統工具，可以輕鬆使用它作為VCS。本章介紹了許多管道指令 - 這些指令使用戶在使用上更家簡單。</span></p>
-</div>
-<p></p>
-<pre class="highlight"><code class="language-console" data-lang="console"><br/><br/><br/><br/><br/><br/><br/></code></pre>
-<p></p>
-<p>=======</p>
-<br />20190326 << <a href='20190326.html'>Previous</a> <a href='ungit使用方法.html'>Next</a> >> ungit使用方法</div></section></div></body></html>
-=======
-<div class='container'><nav><ul id='css3menu1' class='topmenu'><div class="tipue_search_group"><input style="width: 6vw;" type="text" name="q" id="tipue_search_input" pattern=".{2,}" title="Press enter key to search" required></div><li><a href='簡介.html'>簡介</a><ul><li><a href='Blogger.html'>Blogger</a></li></ul><li><a href='Team Member.html'>Team Member</a><li><a href='目錄結構.html'>目錄結構</a><li><a href='頁面編輯.html'>頁面編輯</a><ul><li><a href='插入程式碼.html'>插入程式碼</a><ul><li><a href='Java 程式碼.html'>Java 程式碼</a><li><a href='Python 程式碼.html'>Python 程式碼</a><li><a href='C或C++程式碼.html'>C或C++程式碼</a><li><a href='Lua 程式碼.html'>Lua 程式碼</a><li><a href='Javascript 程式碼.html'>Javascript 程式碼</a><li><a href='Html 原始碼.html'>Html 原始碼</a></li></li></ul></ul><li><a href='網際簡報.html'>網際簡報</a><li><a href='網誌編輯.html'>網誌編輯</a><li><a href='已知錯誤.html'>已知錯誤</a><li><a href='課程筆記.html'>課程筆記</a><ul><li><a href='網際網路故障排除.html'>網際網路故障排除</a><li><a href='Git筆記重點整理.html'>Git筆記重點整理</a><ul><li><a href='開始.html'>開始</a><li><a href='Git booK L9.html'>Git booK L9</a></li></li></ul></ul><li><a href='課程內容.html'>課程內容</a><ul><li><a href='ssh.key操作步驟.html'>ssh.key操作步驟</a><li><a href='配置可攜程式環境.html'>配置可攜程式環境</a><li><a href='Git常用指令.html'>Git常用指令</a></li></ul><li><a href='ungit.html'>ungit</a><ul><li><a href='使用方法.html'>使用方法</a></li></ul></nav><section><div id="tipue_search_content">網際網路故障排除 << <a href='網際網路故障排除.html'>Previous</a> <a href='開始.html'>Next</a> >> 開始<br /><h1>Git筆記重點整理</h1>
-<p>線上觀看手冊</p>
-<p><a href="https://git-scm.com/book/zh-tw/v2">https://git-scm.com/book/zh-tw/v2</a></p>
-<br />網際網路故障排除 << <a href='網際網路故障排除.html'>Previous</a> <a href='開始.html'>Next</a> >> 開始</div></section></div></body></html>
->>>>>>> a4799a3c26746917e515b1a93ab817cdc15c0ad1
+<br />開始 << <a href='開始.html'>Previous</a> <a href='課程內容.html'>Next</a> >> 課程內容</div></section></div></body></html>
