@@ -559,17 +559,32 @@ From git@github.com:schacon/simplegit
 <p><strong><code>GIT_COMMITTER_DATE</code></strong><span><span><span> </span>用於“提交者”字段中的日期。</span></span></p>
 <br/>10.9<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Summary">Summary</a>
 <p><span>Git為一個非常強大的系統工具，可以輕鬆使用它作為VCS。本章介紹了許多管道指令 - 這些指令使用戶在使用上更家簡單。</span></p>
+<h1>課程內容</h1>
 </div>
-<p></p>
+<h2>ssh.key操作步驟</h2>
+<p><strong>關閉彈出的登入窗</strong></p>
+<p>開啟start.bat後輸入  git config --edit --system</p>
+<p>開啟編輯器，編輯git的設定</p>
+<p>使用按鍵H/J/K/L控制方向，之後按a進入編輯模式</p>
+<p>就可以按Backspace刪除最後一行</p>
+<p>如下</p>
+<p><img alt="" height="533" src="/images/ssh.png" width="1008"/></p>
+<p>刪除後按Esc鍵離開編輯模式</p>
+<p>輸入2個冒號後，再輸入wq存檔並關閉即可</p>
+<p>直接離開則輸入exit即可退出</p>
+<p>在可攜系統的程式視窗輸入sh (可至y:\git\bin中確認)</p>
+<p>執行 git 的 shell並輸入(ssh-keygen -t rsa -b 4096 -C "This is my key")</p>
+<p>將會建立Private 與 Public金鑰至y:\home\.ssh\id_rsa與id_rsa.pub將 id_rsa.pub 的內容複製貼上至Github 帳號的Settings</p>
+<p>如下</p>
+<p><img alt="" height="599" src="/images/ssh1.png" width="295"/></p>
+<p><span>在SSH and GPG keys的SSH Key點擊new ssh key並貼上所複製的的內容</span></p>
+<p><span><img alt="" height="502" src="/images/ssh-2.png" width="1000"/></span></p>
 <pre class="highlight"><code class="language-console" data-lang="console"><br/><br/><br/><br/><br/><br/><br/></code></pre>
 <p></p>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 <p></p>
-<h1>ungit</h1>
+<p></p><h1>ungit</h1>
 <h2>使用方法</h2>
-=======
-<p></p><h1>ungit使用方法</h1>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; 808f474062598e0f9af3d551cfd13ab4a6e02285
+<p></p>
 <p> git add . 後使用 ungit</p>
 <p><img alt="" height="758" src="/images/1.png" width="794"/></p>
 <p>輸入這次提交的主題後按下commit</p>
