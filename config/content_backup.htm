@@ -1,6 +1,13 @@
 <h1>簡介</h1>
 <p>CMSimfly (<a href="https://github.com/chiamingyen/cmsimfly">https://github.com/chiamingyen/cmsimfly)</a> 是一套簡單的網際內容管理系統, 採用 Flask 網際框架, 以 Beautifulsoup 解讀分頁內容.</p>
 <p><img alt="" height="471" src="/images/gocycle4.png" width="587"/></p>
+<h2>Blogger</h2>
+<p>團隊部落格&gt; <a href="https://cd2019a-task1-2019cda-t1-g6.blogspot.com/">Here！</a></p>
+<h1>Team Member</h1>
+<p>40623153  廖祥佑</p>
+<p>40623155  陳霖</p>
+<p>40623156  林聖翰</p>
+<p>40623157  李昀霖</p>
 <h1>目錄結構</h1>
 <p>CMSimfly 的動態系統採用 Python3 + Flask 建構, 並且利用 Beatifulsoup 解讀位於 contig 目錄中的 content.htm 超文件檔案.</p>
 <p>content.htm 檔案可以透過動態系統中的 generate_pages 功能, 將超文件轉為位於 content 目錄中的個別頁面檔案.</p>
@@ -450,11 +457,7 @@ COPY TO CLIPBOARD	</pre>
 <h4>Video 引用不支援內部引用</h4>
 <p>tinymce 中插入 video 的小視窗, 要移除引用的圖像與連結, 因為一般建議不要在內容中存入 .mp4 的影片資料, 而只接受引入影片 URL 連結.</p>
 <h1>課程筆記</h1>
-<<<<<<< HEAD
-<h2>第六週筆記</h2>
-=======
-<h2>20190326</h2>
->>>>>>> 2cda6e21c10ab7d7d00af22d4bb6032b9df34af5
+<h2>網際網路故障排除</h2>
 <p>遇到學校伺服器IP掛掉問題<br/>Step1.關閉網路第四版協定</p>
 <p><img alt="" height="708" src="/images/SfF6oN78hU.png" width="1244"/><img alt="" height="708" src="/images/SfF6oN78hU.png" width="1244"/></p>
 <p>打開IPV6</p>
@@ -464,12 +467,36 @@ COPY TO CLIPBOARD	</pre>
 <p>修改proxy內容</p>
 <p>[2001:288:6004:17::4]</p>
 <p><img alt="" height="386" src="/images/rundll32_9PmorqmYBC.png" width="443"/><img alt="" height="518" src="/images/dllhost_QcMKXfshAM.png" width="630"/></p>
-<p>完成修改後便能成功上網</p>
-<<<<<<< HEAD
-<h1><a href="https://cd2019a-task1-2019cda-t1-g6.blogspot.com/">團隊Blogger</a></h1>
+<p>完成修改後便能成功上網。</p>
 <p></p>
-=======
+<p>完成修改後便能成功上網</p>
 <h2>Git筆記重點整理</h2>
+<p>線上觀看手冊</p>
+<p><a href="https://git-scm.com/book/zh-tw/v2">https://git-scm.com/book/zh-tw/v2</a></p>
+<h3>開始</h3>
+<h4>版本控制系統</h4>
+<p><img alt="" height="683" src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g6/images/p01.png" width="800"/></p>
+<p>利用RCS指令可控制任一版本資料，其<span>工作原理是在硬碟上保存一堆特殊格式的補丁集合，通過套用功能，便可以重新產生出每個版本的檔案內容。</span></p>
+<p><span>Git控制方法分成</span><span>集中化與分散式版本控制系統</span></p>
+<p><span>集中化版本控制系統</span></p>
+<p><span><img alt="" height="556" src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g6/images/p02.png" width="800"/></span></p>
+<p>好處：</p>
+<p>1.清楚了解分組內各成員所做進度<br/>2.管理員統一控制所有開發者權限<br/>3.各用戶端統一使用統一版本系統，好管理<br/>壞處：<br/>1.中央伺服器發生故障，各開發者便無法協同合作<br/>2.統一集中資料會有遺失資料風險</p>
+<p>分散式版本控制系統<br/><br/>因集中化控制的不便，進而衍化出分散式控制系統</p>
+<p><img alt="" height="800" src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g6/images/p03.png" width="668"/><br/>優點：<br/>1.任一協同伺服器故障，事後都能以任一用戶端鏡像還原<br/>2.能與許多遠端倉儲互動，使不同地方群組能在不一樣的地方完成同一專案協同合作<br/>3.階層式的分工合作<br/><br/></p>
+<p>-------------------------------------------------------------------------------------------------------------</p>
+<p><strong>Git完整性</strong></p>
+<p><br/><span>1.Git 中所有的物件在儲存前都會被計算校驗碼（checksum）並以校驗碼參照物件。</span><br/>2.計算較驗碼<span>機制稱為 SHA-1 雜湊演算法。 一個校驗碼是由 40 個 16 進位的字母（0–9 和 a–f）所組成，Git 會根據檔案的內容和資料夾的結構來計算。 <br/>3. Git 的資料庫內，每個檔案都是用其內容的校驗碼來儲存，而不是使用檔名。</span></p>
+<p><strong>Git狀態</strong></p>
+<p>1.已提交（committed）：<br/><span>檔案己安全地存在你的本地端資料庫。</span></p>
+<p>2.<span>已修改（modified）：<br/>檔案已被修改但尚未提交到本地端資料庫。 <br/></span></p>
+<p>3.<span>已預存（staged）：<br/>已預存代表這檔案將會被存到下次你提交的快照中。<br/><br/></span></p>
+<p><span><img alt="" height="441" src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g6/images/p04.png" width="800"/></span></p>
+<p><strong>Git工作流程</strong></p>
+<p>1.你在你工作目錄修改檔案。</p>
+<p>2.預存檔案，將檔案的快照新增到預存區。</p>
+<p>3.做提交的動作，這會讓存在預存區的檔案快照永久地儲存在 Git 目錄中。</p>
+<h3>Git booK L9</h3>
 <p><br/>9.1<a href="https://git-scm.com/book/zh-tw/v2/Git-and-Other-Systems-Git-as-a-Client">Git as a Client</a></p>
 <p><span>git svn：</span><span>Git中所有Subversion橋接指令的基本指令都是</span><code>git svn</code><span><span>。</span><span>它需要相當多的指令，因此我們將在完成一些簡單的工作流程時展示最常見的指令。當用戶使用git svn時，需特別注意避免同時與Git遠端倉儲交互操作使用。</span></span></p>
 <p><br/>10.1<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Plumbing-and-Porcelain">Plumbing and Porcelain</a></p>
@@ -531,7 +558,8 @@ From git@github.com:schacon/simplegit
 <pre class="highlight"><code class="language-console" data-lang="console"><br/><br/><br/><br/><br/><br/><br/></code></pre>
 <p></p>
 <p></p>
-<h1>ungit使用方法</h1>
+<h1>ungit</h1>
+<h2>使用方法</h2>
 <p> git add . 後使用 ungit</p>
 <p><img alt="" height="758" src="/images/1.png" width="794"/></p>
 <p>輸入這次提交的主題後按下commit</p>
@@ -539,6 +567,6 @@ From git@github.com:schacon/simplegit
 <p><span>在按一次commit後的分支點擊push</span></p>
 <p><span><img alt="" height="632" src="/images/未命名.png" width="869"/></span></p>
 <p>再輸入使用者帳號密碼後推送完成</p>
-<p>!!輸入完成後要直接按"Submit"扭，使用鍵盤的"Enter"無法完成!!</p>
+<p>輸入完成後直接按下Submit即可</p>
 <p><img alt="" height="290" src="/images/3.png" width="596"/></p>
->>>>>>> 2cda6e21c10ab7d7d00af22d4bb6032b9df34af5
+<p></p>
