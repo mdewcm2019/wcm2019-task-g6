@@ -1,19 +1,20 @@
-<h1>簡介</h1>
+<h1>期中內容</h1>
+<h2>簡介</h2>
 <p>CMSimfly (<a href="https://github.com/chiamingyen/cmsimfly">https://github.com/chiamingyen/cmsimfly)</a> 是一套簡單的網際內容管理系統, 採用 Flask 網際框架, 以 Beautifulsoup 解讀分頁內容.</p>
 <p><img alt="" height="471" src="/images/gocycle4.png" width="587"/></p>
-<h2>Blogger</h2>
+<h3>Blogger</h3>
 <p>團隊部落格&gt; <a href="https://cd2019a-task1-2019cda-t1-g6.blogspot.com/">Here！</a></p>
-<h1>Team Member</h1>
+<h2>Team Member</h2>
 <p>40623153  廖祥佑</p>
 <p>40623155  陳霖</p>
 <p>40623156  林聖翰</p>
 <p>40623157  李昀霖</p>
-<h1>目錄結構</h1>
+<h2>目錄結構</h2>
 <p>CMSimfly 的動態系統採用 Python3 + Flask 建構, 並且利用 Beatifulsoup 解讀位於 contig 目錄中的 content.htm 超文件檔案.</p>
 <p>content.htm 檔案可以透過動態系統中的 generate_pages 功能, 將超文件轉為位於 content 目錄中的個別頁面檔案.</p>
 <p>動態系統與靜態系統則共用 downloads, images, static 等目錄, 其中 downloads 目錄存放在動態系統上傳的文件檔, 而 images 目錄則存放動態系統所上傳的影像檔案, 包括 jpg, png 與 gif 等格式圖檔.</p>
 <p>static 目錄則存放在動態與靜態系統所需要的 Javascript 或 Brython 程式檔.</p>
-<h1>頁面編輯</h1>
+<h2>頁面編輯</h2>
 <p>CMSimfly 動態系統的網際編輯器採用 <a href="https://www.tiny.cloud/">TinyMCE4</a>, 可以放入一般超文件,  納入圖檔, 嵌入影片連結, 並且加入帶有行數的原始碼.</p>
 <p>透過 File Upload 功能, 可以一次上傳多個檔案,  存入 downloads 目錄中儲存, 之後各頁面可以引入對應連結.</p>
 <p>而圖檔的上傳與引用與一般檔案類似, 但上傳後存入 images 目錄中.</p>
@@ -21,7 +22,7 @@
 <p>CMSimfly 目前使用 Syntaxhighlighter 3.0.83:</p>
 <p> <a href="http://alexgorbatchev.com/SyntaxHighlighter/">http://alexgorbatchev.com/SyntaxHighlighter/</a> </p>
 <p>進行頁面中的程式碼高亮顯示.</p>
-<h3>Java 程式碼</h3>
+<h4>Java 程式碼</h4>
 <pre class="brush:java;auto-links:false;toolbar:false" contenteditable="false">import java.util.Scanner;
 
 public class Life {
@@ -102,7 +103,7 @@ public class Life {
 
 }</pre>
 <p></p>
-<h3>Python 程式碼</h3>
+<h4>Python 程式碼</h4>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def parse_content():
     """use bs4 and re module functions to parse content.htm"""
     #from pybean import Store, SQLiteWriter
@@ -185,7 +186,7 @@ public class Life {
 
 </pre>
 <p></p>
-<h3>C或C++程式碼</h3>
+<h4>C或C++程式碼</h4>
 <p>請注意, 目前 CMSimfly 標題內文無法解讀 "/" 符號, 因此若本頁面的標題為  "C/C++程式碼", 則無法進行分頁.</p>
 <pre class="brush:cpp;auto-links:false;toolbar:false" contenteditable="false">/* Runge Kutta for a set of first order differential equations */
  
@@ -282,7 +283,7 @@ double f(double x, double y[], int i){
   return x;
 }</pre>
 <p></p>
-<h3>Lua 程式碼</h3>
+<h4>Lua 程式碼</h4>
 <pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">-- 導入 js 模組
 js = require("js")
 -- 取得 window
@@ -311,7 +312,7 @@ end
 print("總共猜了 "..num.." 次, answer=guess="..answer.." - correct")
     </pre>
 <p></p>
-<h3>Javascript 程式碼</h3>
+<h4>Javascript 程式碼</h4>
 <pre class="brush:js;auto-links:false;toolbar:false" contenteditable="false">STLViewer = function(stlpath, plotarea) {
 
 	var mycanvas = document.getElementById(plotarea);
@@ -397,7 +398,7 @@ print("總共猜了 "..num.." 次, answer=guess="..answer.." - correct")
 }
 </pre>
 <p></p>
-<h3>Html 原始碼</h3>
+<h4>Html 原始碼</h4>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;html&gt;
    &lt;head&gt;
       &lt;meta http-equiv="content-type" content="text/html;charset=utf-8"&gt;
@@ -442,14 +443,14 @@ print("總共猜了 "..num.." 次, answer=guess="..answer.." - correct")
 &lt;/html&gt;
 COPY TO CLIPBOARD	</pre>
 <p></p>
-<h1>網際簡報</h1>
+<h2>網際簡報</h2>
 <p>CMSimfly 中採用 <a href="https://revealjs.com/#/">Reveal.js</a> 作為網際簡報, 其中的維護檔案位於 config/reveal.js, 而對應的簡報檔案則位於 reveal 目錄中.</p>
-<h1>網誌編輯</h1>
+<h2>網誌編輯</h2>
 <p>CMSimfly 彩用 <a href="https://blog.getpelican.com/">Pelican blog</a> 系統, 編輯檔案位於 config/pelican.leo, 對應的</p>
 <p> Markdown 原始檔案位於 markdown 目錄中, 而經 Pelican 轉換出的網誌超文件檔案則位於 blog 目錄中.</p>
 <p>其餘在網誌文章中所需要的 Javascript 或 Brython 程式檔案, 則與 CMSimfly 及 Reveal.js 共用, 位於 static 目錄下.</p>
 <p>上傳檔案與圖檔的引用則與 CMSimfly 架構相同.</p>
-<h1>已知錯誤</h1>
+<h2>已知錯誤</h2>
 <h4>全部頁面會因無法正確解讀而誤刪</h4>
 <p>在特定情況下, 系統會誤刪 config/content.htm 檔案, 目前在單頁或全部頁面編輯存檔之前, 或將上一版本的 content.htm 存入 content_back.htm, 若 content.htm 內容被程式誤刪, 可以利用備份檔案複製回原始內容後, 再進行後續處理.</p>
 <h4>頁面標題不支援特殊符號</h4>
@@ -461,8 +462,8 @@ COPY TO CLIPBOARD	</pre>
 <p>可在隨身系統中的satrt.bat加入<span>set USERPROFILE=%Disk%:\home</span></p>
 <p>使得ungit能找到<span>y:\home中的使用者目錄</span></p>
 <p></p>
-<h1>課程筆記</h1>
-<h2>網際網路故障排除</h2>
+<h2>課程筆記</h2>
+<h3>網際網路故障排除</h3>
 <p></p>
 <p>遇到學校伺服器IP掛掉問題<br/>Step1.關閉網路第四版協定</p>
 <p><img alt="" height="708" src="/images/SfF6oN78hU.png" width="1244"/><img alt="" height="708" src="/images/SfF6oN78hU.png" width="1244"/></p>
@@ -478,10 +479,10 @@ COPY TO CLIPBOARD	</pre>
 <p>完成修改後便能成功上網</p>
 <p></p>
 <p></p>
-<h2>Git筆記重點整理</h2>
+<h3>Git筆記重點整理</h3>
 <p>線上觀看手冊</p>
 <p><a href="https://git-scm.com/book/zh-tw/v2">https://git-scm.com/book/zh-tw/v2</a></p>
-<h3>開始</h3>
+<h4>開始</h4>
 <h4>版本控制系統</h4>
 <p><img alt="" height="683" src="https://mdekmol.github.io/cd2019a-task1-2019cda_t1_g6/images/p01.png" width="800"/></p>
 <p>利用RCS指令可控制任一版本資料，其<span>工作原理是在硬碟上保存一堆特殊格式的補丁集合，通過套用功能，便可以重新產生出每個版本的檔案內容。</span></p>
@@ -504,7 +505,7 @@ COPY TO CLIPBOARD	</pre>
 <p>1.你在你工作目錄修改檔案。</p>
 <p>2.預存檔案，將檔案的快照新增到預存區。</p>
 <p>3.做提交的動作，這會讓存在預存區的檔案快照永久地儲存在 Git 目錄中。</p>
-<h3>Git booK L9</h3>
+<h4>Git booK L9</h4>
 <p><br/>9.1<a href="https://git-scm.com/book/zh-tw/v2/Git-and-Other-Systems-Git-as-a-Client">Git as a Client</a></p>
 <p><span>git svn：</span><span>Git中所有Subversion橋接指令的基本指令都是</span><code>git svn</code><span><span>。</span><span>它需要相當多的指令，因此我們將在完成一些簡單的工作流程時展示最常見的指令。當用戶使用git svn時，需特別注意避免同時與Git遠端倉儲交互操作使用。</span></span></p>
 <p><br/>10.1<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Plumbing-and-Porcelain">Plumbing and Porcelain</a></p>
@@ -570,9 +571,9 @@ From git@github.com:schacon/simplegit
 <p><strong><code>GIT_COMMITTER_DATE</code></strong><span><span><span> </span>用於“提交者”字段中的日期。</span></span></p>
 <br/>10.9<a href="https://git-scm.com/book/zh-tw/v2/Git-Internals-Summary">Summary</a>
 <p><span>Git為一個非常強大的系統工具，可以輕鬆使用它作為VCS。本章介紹了許多管道指令 - 這些指令使用戶在使用上更家簡單。</span></p>
-<h1>課程內容</h1>
+<h2>課程內容</h2>
 </div>
-<h2>ssh.key操作步驟</h2>
+<h3>ssh.key操作步驟</h3>
 <p><strong>關閉彈出的登入窗</strong></p>
 <p>開啟start.bat後輸入  git config --edit --system</p>
 <p>開啟編輯器，編輯git的設定</p>
@@ -599,9 +600,9 @@ From git@github.com:schacon/simplegit
 <p>改成url = git@github.com:<span>(</span><span>mdekmol/github分組網址)</span></p>
 <p>完成後直接提交推送即可不用打帳號密碼就能push。</p>
 <p></p>
-<h2>配置可攜程式環境</h2>
+<h3>配置可攜程式環境</h3>
 <p><span><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/OUIzI9cQQIc" width="560"></iframe></span></p>
-<h2>Git常用指令</h2>
+<h3>Git常用指令</h3>
 <pre class="highlight"><code class="language-console" data-lang="console"><br/><br/><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/w0R90n4xpMs" width="560"></iframe><br/><br/></code></pre>
 <p>1.Git  clone    下載倉儲(已下載)</p>
 <p>2.Git  add .   新增檔案</p>
@@ -609,7 +610,7 @@ From git@github.com:schacon/simplegit
 <p>4.Git<span style="color: #626262;"> </span>push 推送遠端<code class="language-console" data-lang="console"><br/><br/></code></p>
 <p></p>
 <p></p>
-<h1>ungit使用方法</h1>
+<h2>ungit使用方法</h2>
 <p></p>
 <p> git add . 後使用 ungit</p>
 <p><img alt="" height="758" src="/images/1.png" width="794"/></p>
@@ -625,8 +626,8 @@ From git@github.com:schacon/simplegit
 <p>輸入完成後直接按下Submit即可</p>
 <p><img alt="" height="290" src="/images/3.png" width="596"/></p>
 <p></p>
-<h1>實習任務</h1>
-<h2>測試1</h2>
+<h2>實習任務</h2>
+<h3>測試1</h3>
 <p><button onclick="myFunction()">Try it</button></p>
 <p id="demo"></p>
 <script>// <![CDATA[
@@ -634,7 +635,7 @@ function myFunction() {
   document.getElementById("demo").innerHTML = Math.floor(Math.random()*10);
 }
 // ]]></script>
-<h2>測試2</h2>
+<h3>測試2</h3>
 <p></p>
 <script type="text/javascript">// <![CDATA[
 var cwidth = 400;
@@ -794,7 +795,7 @@ function draw2mid() {
 <p></p>
 <p></p>
 <p></p>
-<h1>期中影片</h1>
+<h2>期中影片</h2>
 <p>40623153</p>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/KwrCzWtIfuk" width="560"></iframe></p>
 <p></p>
@@ -806,13 +807,14 @@ function draw2mid() {
 <p>40623156</p>
 </form>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/kZdsKhtsxTw" width="560"></iframe></p>
-<h1>個人操作影片</h1>
-<h2>40623153</h2>
+<h2>個人操作影片</h2>
+<h3>40623153</h3>
 <p><span>VirtualBox創建步驟</span></p>
 <p><span><iframe allowfullscreen="allowfullscreen" height="500" src="//www.youtube.com/embed/Ul_ruNLISDk" width="700"></iframe></span></p>
 <p></p>
-<h2>40623155</h2>
+<h3>40623155</h3>
 <p>VirtualBox創建步驟</p>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/5gKWro5luhQ" width="560"></iframe></p>
-<h2>40623156</h2>
+<h3>40623156</h3>
 <p>VirtualBox創建步驟</p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/MuySWeCOs_M" width="560"></iframe></p>
