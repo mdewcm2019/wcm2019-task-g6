@@ -1,4 +1,48 @@
-<h1>期中內容</h1>
+<h1>網路連線設定</h1>
+<h2>網際網路故障排除</h2>
+<p></p>
+<p>遇到學校伺服器IP掛掉問題<br/>Step1.關閉網路第四版協定</p>
+<p><img alt="" height="708" src="/images/SfF6oN78hU.png" width="1244"/><img alt="" height="708" src="/images/SfF6oN78hU.png" width="1244"/></p>
+<p>打開IPV6</p>
+<p>修改內容設定，打開DNS並輸入</p>
+<p>2001:b000:168::1</p>
+<p><img alt="" height="518" src="/images/dllhost_QcMKXfshAM.png" width="630"/><img alt="" height="518" src="/images/dllhost_QcMKXfshAM.png" width="630"/></p>
+<p>修改proxy內容</p>
+<p>[2001:288:6004:17::4]</p>
+<p><img alt="" height="386" src="/images/rundll32_9PmorqmYBC.png" width="443"/><img alt="" height="518" src="/images/dllhost_QcMKXfshAM.png" width="630"/></p>
+<p>完成修改後便能成功上網。</p>
+<h2>ssh.key操作步驟</h2>
+<p><strong>關閉彈出的登入窗</strong></p>
+<p>開啟start.bat後輸入  git config --edit --system</p>
+<p>開啟編輯器，編輯git的設定</p>
+<p>使用按鍵H/J/K/L控制方向，之後按a進入編輯模式</p>
+<p>就可以按Backspace刪除最後一行</p>
+<p>如下</p>
+<p><img alt="" height="533" src="/images/ssh.png" width="1008"/></p>
+<p>刪除後按Esc鍵離開編輯模式</p>
+<p>輸入2個冒號後，再輸入wq存檔並關閉即可</p>
+<p>直接離開則輸入exit即可退出</p>
+<p>在可攜系統的程式視窗輸入sh (可至y:\git\bin中確認)</p>
+<p>執行 git 的 shell並輸入(ssh-keygen -t rsa -b 4096 -C "This is my key")</p>
+<p>將會建立Private 與 Public金鑰至y:\home\.ssh\id_rsa與id_rsa.pub將 id_rsa.pub 的內容複製貼上至Github 帳號的Settings</p>
+<p>如下</p>
+<p><img alt="" height="599" src="/images/ssh1.png" width="295"/></p>
+<p><span>在SSH and GPG keys的SSH Key點擊new ssh key並貼上所複製的的內容</span></p>
+<p><span><img alt="" height="502" src="/images/ssh-2.png" width="1000"/></span></p>
+<p><strong>利用ssh提交推送</strong></p>
+<p>首先要確認倉儲是以ssh的方式clone</p>
+<p>利用以下指令clone</p>
+<p>git clone git@github.com:(mdekmol/github分組網址)</p>
+<p>或直接使用SciTE編輯器開啟個人倉儲的.git檔案裡面的config檔案</p>
+<p>把url = https://github.com/<span>(</span><span>mdekmol/github分組網址)</span></p>
+<p>改成url = git@github.com:<span>(</span><span>mdekmol/github分組網址)</span></p>
+<p>完成後直接提交推送即可不用打帳號密碼就能push。</p>
+<h1>配置可攜程式環境</h1>
+<p><span>取得 Windows 10 64 位元環境下的可攜程式環境 (下載  2019_cdb_w5.7z), 下載後解開目錄, 放入 USB3.0 規格以上的隨身碟或隨身硬碟.</span><br/><br/><span>以滑鼠點擊 start.bat 開啟可攜隨身系統, 以 stop.bat 關閉可攜隨身系統, 隨身碟必須在關閉所有應用程式執行下, 才可正常退出.</span><br/><br/><span>了解基本的 DOS (Disk Operating System) 指令</span><br/><br/><span>C:\&gt; 符號為 DOS 命令列視窗的回應 (Prompt), 表示目前在 C 槽硬碟的 \ 根目錄, 若要切換到 Y 槽, 則在電腦的回應後, 輸入 Y:, 命令列將轉為</span><br/><br/><span>Y:\&gt;</span><br/><br/><span>若要更換目錄, 則使用 cd, 也就是 change directory 的意思, 例如:</span><br/><br/><span>Y:\&gt;cd tmp</span><br/><br/><span>表示要從 Y 槽的根目錄更換到 tmp 目錄, 也就是</span><br/><br/><span>Y:\tmp&gt;</span><br/><br/><span>若要再回到 Y 槽的根目錄, 可以使用 cd ..</span><br/><br/><span>表示要從目前所在目錄, 往上跳回一個目錄, 也就是重新回到 Y 槽的根目錄.</span><br/><br/><span>另外, 無論目前位於哪一個子目錄, 也可以使用 cd \</span><br/><br/><span>直接回到根目錄.</span><br/><br/><span>或者從 Y:\&gt; 直接使用</span><br/><br/><span>cd \tmp\repo\ssh\wcm2019</span><br/><br/><span>直接從 Y 槽的根目錄, 跳進 Y:\tmp\repo\ssh\wcm2019&gt;</span><br/><br/><span>此外, 常用的 DOS 指令有:</span><br/><br/><span>dir - 列出目前所在目錄的內容</span><br/><br/><span>mkdir - 隨後加上要建立目錄的名稱, 可以建立目錄</span><br/><br/><span>cls - clear screen, 清除目前的命令列顯示的內容</span></p><h1>倉儲改版</h1>
+<p><span>建立 Git 倉儲, 並 clone 倉儲至近端工作後, 對遠端倉儲改版</span><br/><br/><span>可攜程式系統中已經內建 git, 可以在啟動 start.bat 後, 透過 path 的設定, 直接執行 git 指令.</span><br/><br/><span>建立 Git 倉儲, 共分為兩類, 一類是直接在 Github 網際介面下建立倉儲時, 要求建立 README.md 檔案, 之後可以直接在近端, 以 git clone 加上倉儲連線 URL, 將倉儲克隆一份到近端, 並以最新版本作為工作目錄, 使用者改版後, 可以直接透過 git add, commit 與 push 對遠端倉儲改版.</span><br/><br/><span>另一類則是故意在 Github 網際介面下建立倉儲時, 不要建立任何檔案, 而是在近端自行利用 git 指令建立倉儲架構, 新增內容後, 以 git remote add 設法在近端倉儲中納入 origin URL 後, 將近端倉儲版本新增提交推送到遠端.</span><br/><br/><span>git add</span><br/><br/><span>git add 可以用來新增一個檔案, 數個檔案, 或在之前提交後所新增的所有內容.</span><br/><br/><span>git add 在 GIT 架構下, 是對所新增或修改的內容拍快照:</span><br/><br/><span>git add . adds all modified and new (untracked) files in the current directory and all subdirectories to the staging area (a.k.a. the index), thus preparing them to be included in the next git commit . Any files matching the patterns in the .gitignore file will be ignored by git add</span><br/><br/><span>git commit<span> </span></span><br/><br/><span>git commit 執行之前, 必須使用 git config 建立臨時或永久的身分註記, 因為 GIT 在展開所有改版內容時, 必須明確登錄這些變更的作者與時間.</span><br/><br/><span>當使用者採用 git commit -m "改版說明訊息", 此次提交到 .git 目錄下的更動內容, 均會綁定使用者身分與改版所輸入的說明訊息.</span><br/><br/><span>git push</span><br/><br/><span>git push 在隨後沒有輸入遠端 URL 代號時, 表示要推送到 origin, 若透過 git remote add 設定其他代號與 URL 對應時, git push 加上代號, 就可以將此次的提交內容, 推送到指定的 URL 所在遠端倉儲.</span></p><h1>靜態CMSimfly</h1>
+<p><span>利用 CMSimfly (https://github.com/chiamingyen/cmsimfly) 內容, 建立自己的 Github Pages 網站</span><br/><br/><span>設法利用<span> </span></span><a href="http://mde.tw/wcm2019/content/%E5%AF%A6%E7%BF%92%E9%A0%85%E7%9B%AE%E4%B8%89.html">HTML5 CSS 與 Javascript</a><span>, 納入與機械設計相關的靜態網頁</span></p><h1>Mobile 網站內容</h1>
+<p><span>學習如何使用 CMSimfly, 在網站中加入各種內容 (導入 Bootstrap frontend framework)</span><br/><br/><span>使用 Flask, bs4 與 lxml 模組</span><br/><br/><span>了解 CMSimfly 如何建構, 並且嘗試修改現有功能, 除錯或建立自己的網際內容管理系統</span></p><h1>Virtual Host</h1>
+<p><span>Fossil SCM</span><br/><br/><span>如何利用 Fossil SCM, 在 Virtualbox 中的 Ubuntu 18.04-2 (8.5 GB) 建立類似 Github 的系統, 可以放入 CMSimfly 的靜態網頁</span><br/><br/><span>Ubuntu 18.04 (https://www.ubuntu.com/about/release-cycle), 配置網路連線, 然後架構 uwsgi 環境下的 CMSimfly 動態網站, 或建立 Fossil SCM 用來伺服管理 CMSimfly 下有版次管理的靜態網頁, 或利用 nginx 伺服無版次管理的 CMSimfly 靜態網頁.</span></p><h1>期中報告</h1>
 <h2>簡介</h2>
 <p>CMSimfly (<a href="https://github.com/chiamingyen/cmsimfly">https://github.com/chiamingyen/cmsimfly)</a> 是一套簡單的網際內容管理系統, 採用 Flask 網際框架, 以 Beautifulsoup 解讀分頁內容.</p>
 <p><img alt="" height="471" src="/images/gocycle4.png" width="587"/></p>
@@ -463,21 +507,6 @@ COPY TO CLIPBOARD	</pre>
 <p>使得ungit能找到<span>y:\home中的使用者目錄</span></p>
 <p></p>
 <h2>課程筆記</h2>
-<h3>網際網路故障排除</h3>
-<p></p>
-<p>遇到學校伺服器IP掛掉問題<br/>Step1.關閉網路第四版協定</p>
-<p><img alt="" height="708" src="/images/SfF6oN78hU.png" width="1244"/><img alt="" height="708" src="/images/SfF6oN78hU.png" width="1244"/></p>
-<p>打開IPV6</p>
-<p>修改內容設定，打開DNS並輸入</p>
-<p>2001:b000:168::1</p>
-<p><img alt="" height="518" src="/images/dllhost_QcMKXfshAM.png" width="630"/><img alt="" height="518" src="/images/dllhost_QcMKXfshAM.png" width="630"/></p>
-<p>修改proxy內容</p>
-<p>[2001:288:6004:17::4]</p>
-<p><img alt="" height="386" src="/images/rundll32_9PmorqmYBC.png" width="443"/><img alt="" height="518" src="/images/dllhost_QcMKXfshAM.png" width="630"/></p>
-<p>完成修改後便能成功上網。</p>
-<p></p>
-<p>完成修改後便能成功上網</p>
-<p></p>
 <p></p>
 <h3>Git筆記重點整理</h3>
 <p>線上觀看手冊</p>
@@ -573,34 +602,7 @@ From git@github.com:schacon/simplegit
 <p><span>Git為一個非常強大的系統工具，可以輕鬆使用它作為VCS。本章介紹了許多管道指令 - 這些指令使用戶在使用上更家簡單。</span></p>
 <h2>課程內容</h2>
 </div>
-<h3>ssh.key操作步驟</h3>
-<p><strong>關閉彈出的登入窗</strong></p>
-<p>開啟start.bat後輸入  git config --edit --system</p>
-<p>開啟編輯器，編輯git的設定</p>
-<p>使用按鍵H/J/K/L控制方向，之後按a進入編輯模式</p>
-<p>就可以按Backspace刪除最後一行</p>
-<p>如下</p>
-<p><img alt="" height="533" src="/images/ssh.png" width="1008"/></p>
-<p>刪除後按Esc鍵離開編輯模式</p>
-<p>輸入2個冒號後，再輸入wq存檔並關閉即可</p>
-<p>直接離開則輸入exit即可退出</p>
-<p>在可攜系統的程式視窗輸入sh (可至y:\git\bin中確認)</p>
-<p>執行 git 的 shell並輸入(ssh-keygen -t rsa -b 4096 -C "This is my key")</p>
-<p>將會建立Private 與 Public金鑰至y:\home\.ssh\id_rsa與id_rsa.pub將 id_rsa.pub 的內容複製貼上至Github 帳號的Settings</p>
-<p>如下</p>
-<p><img alt="" height="599" src="/images/ssh1.png" width="295"/></p>
-<p><span>在SSH and GPG keys的SSH Key點擊new ssh key並貼上所複製的的內容</span></p>
-<p><span><img alt="" height="502" src="/images/ssh-2.png" width="1000"/></span></p>
-<p><strong>利用ssh提交推送</strong></p>
-<p>首先要確認倉儲是以ssh的方式clone</p>
-<p>利用以下指令clone</p>
-<p>git clone git@github.com:(mdekmol/github分組網址)</p>
-<p>或直接使用SciTE編輯器開啟個人倉儲的.git檔案裡面的config檔案</p>
-<p>把url = https://github.com/<span>(</span><span>mdekmol/github分組網址)</span></p>
-<p>改成url = git@github.com:<span>(</span><span>mdekmol/github分組網址)</span></p>
-<p>完成後直接提交推送即可不用打帳號密碼就能push。</p>
-<p></p>
-<h3>配置可攜程式環境</h3>
+<h3>配置可攜程式環境-1</h3>
 <p><span><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/OUIzI9cQQIc" width="560"></iframe></span></p>
 <h3>Git常用指令</h3>
 <pre class="highlight"><code class="language-console" data-lang="console"><br/><br/><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/w0R90n4xpMs" width="560"></iframe><br/><br/></code></pre>
