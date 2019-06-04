@@ -1,0 +1,403 @@
+<!doctype html>
+<html><head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>CMSimfly</title> <link rel="stylesheet" type="text/css" href="./../static/cmsimply.css">
+<script src="tipuesearch_content.js"></script>
+<script src="./../static/jquery.js"></script>
+<link rel="stylesheet" href="./../static/tipuesearch/css/tipuesearch.css">
+<script src="./../static/tipuesearch/tipuesearch_set.js"></script>
+<script src="./../static/tipuesearch/tipuesearch.min.js"></script>
+
+<script type="text/javascript" src="./../static/syntaxhighlighter/shCore.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushJScript.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushJava.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushPython.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushSql.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushXml.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushPhp.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushLua.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushCpp.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushCss.js"></script>
+<script type="text/javascript" src="./../static/syntaxhighlighter/shBrushCSharp.js"></script>
+<link type="text/css" rel="stylesheet" href="./../static/syntaxhighlighter/css/shCoreDefault.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<!-- for LaTeX equations 暫時不用
+<script src="https://scrum-3.github.io/web/math/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+<script type="text/javascript">
+init_mathjax = function() {
+    if (window.MathJax) {
+        // MathJax loaded
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+            },
+            displayAlign: 'left', // Change this to 'center' to center equations.
+            "HTML-CSS": {
+                styles: {'.MathJax_Display': {"margin": 0}}
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }
+}
+init_mathjax();
+</script>
+-->
+<!-- 暫時不用
+<script src="./../static/fengari-web.js"></script>
+<script type="text/javascript" src="./../static/Cango-13v08-min.js"></script>
+<script type="text/javascript" src="./../static/CangoAxes-4v01-min.js"></script>
+<script type="text/javascript" src="./../static/gearUtils-05.js"></script>
+-->
+<!-- for Brython 暫時不用
+<script src="https://scrum-3.github.io/web/brython/brython.js"></script>
+<script src="https://scrum-3.github.io/web/brython/brython_stdlib.js"></script>
+-->
+
+<script type="text/javascript">
+/*shorthand of $(document).ready(function(){};); */
+$(function(){
+    $("ul.topmenu> li:has(ul) > a").append('<div class="arrow-right"></div>');
+    $("ul.topmenu > li ul li:has(ul) > a").append('<div class="arrow-right"></div>');
+});
+function doSearch() {
+     $('#tipue_search_input').tipuesearch({
+        newWindow: true, minimumLength: 2
+     });
+}
+$(document).ready(doSearch);
+</script>
+
+</head><header><h1>網際內容管理第六組</h1> <confmenu>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="sitemap.html">Site Map</a></li>
+<li><a href="./../reveal/index.html">reveal</a></li>
+<li><a href="./../blog/index.html">blog</a></li>
+
+</ul>
+</confmenu></header>
+<div class='container'><nav><ul id='css3menu1' class='topmenu'><div class="tipue_search_group"><input style="width: 6vw;" type="text" name="q" id="tipue_search_input" pattern=".{2,}" title="Press enter key to search" required></div><li><a href='G6成員名單.html'>G6成員名單</a><li><a href='實習任務.html'>實習任務</a><ul><li><a href='測試1.html'>測試1</a><li><a href='測試2.html'>測試2</a><li><a href='canvas1.html'>canvas1</a><li><a href='Brython.html'>Brython</a><li><a href='Ball.html'>Ball</a></li></ul><li><a href='網路連線設定.html'>網路連線設定</a><ul><li><a href='網際網路故障排除.html'>網際網路故障排除</a><li><a href='ssh.key操作步驟.html'>ssh.key操作步驟</a></li></ul><li><a href='網際內容管理內容.html'>網際內容管理內容</a><ul><li><a href='配置可攜程式環境.html'>配置可攜程式環境</a><li><a href='倉儲改版.html'>倉儲改版</a><li><a href='靜態CMSimfly.html'>靜態CMSimfly</a><li><a href='Mobile 網站內容.html'>Mobile 網站內容</a><li><a href='Virtual Host.html'>Virtual Host</a></li></ul><li><a href='期中報告.html'>期中報告</a><ul><li><a href='簡介.html'>簡介</a><ul><li><a href='Blogger.html'>Blogger</a></li></ul><li><a href='Team Member.html'>Team Member</a><li><a href='目錄結構.html'>目錄結構</a><li><a href='頁面編輯.html'>頁面編輯</a><li><a href='插入程式碼.html'>插入程式碼</a><li><a href='網際簡報.html'>網際簡報</a><li><a href='網誌編輯.html'>網誌編輯</a><li><a href='已知錯誤.html'>已知錯誤</a><li><a href='課程筆記.html'>課程筆記</a><ul><li><a href='Git筆記重點整理.html'>Git筆記重點整理</a></li></ul><li><a href='課程內容.html'>課程內容</a><ul><li><a href='配置可攜程式環境-1.html'>配置可攜程式環境-1</a><li><a href='Git常用指令.html'>Git常用指令</a></li></ul><li><a href='ungit使用方法.html'>ungit使用方法</a><li><a href='期中影片.html'>期中影片</a><li><a href='個人操作影片.html'>個人操作影片</a><ul><li><a href='40623153.html'>40623153</a><li><a href='40623155.html'>40623155</a><li><a href='40623156.html'>40623156</a><li><a href='40623157.html'>40623157</a></li></li></ul></ul><li><a href='Python 語法.html'>Python 語法</a><li><a href='Qt for Python.html'>Qt for Python</a></li></ul></nav><section><div id="tipue_search_content">Brython << <a href='Brython.html'>Previous</a> <a href='網路連線設定.html'>Next</a> >> 網路連線設定<br /><h1>Ball</h1>
+<p></p>
+<script>// <![CDATA[
+class Ball {
+	constructor(radius, color) {
+		this.radius = radius;
+		this.color = color;
+		this.isMoving = true;
+		this.x = 0;
+		this.y = 0;
+		this.vx = 0;
+		this.vy = 0;
+		this.mass = 1;
+		this.drag = 0.995;
+		this.bounceFactor = 0.8;
+		this.init();
+	}
+	init() {
+		
+		/*graphics.beginFill(color);
+		graphics.drawCircle(0, 0, radius);
+		graphics.endFill();*/
+	}
+	draw(ctx) {
+		ctx.beginPath();
+		ctx.strokeStyle = this.color;
+		ctx.fillStyle = this.color;
+		ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+	}
+} // ends class
+
+var fpsCounter = function() {
+	var fps = 60,
+		framesThisSecond = 0,
+		lastFpsUpdate = 0,
+		fpsDecay = 0.25,
+		fpsUpdateTime = 1000;
+	var fpsDisplay = document.createElement('div');
+	fpsDisplay.style.cssText = 'position:fixed;left:0;top:0;opacity:0.7;z-index:9999;font-family:sans-serif;font-size:16px;font-weight:bold;color:#00F;';
+	fpsDisplay.appendChild(document.createTextNode(" FPS"));
+	document.body.appendChild(fpsDisplay);
+	this.update = function(timestamp) {
+		if (typeof timestamp === 'undefined') { timestamp = performance.now() }; //if no timestamp is given, default to performance.now()
+		if (timestamp > lastFpsUpdate + fpsUpdateTime) { //update every fpsUpdateTime
+			fps = fpsDecay * framesThisSecond + (1 - fpsDecay) * fps; //compute the new FPS
+			lastFpsUpdate = timestamp;
+			framesThisSecond = 0;
+			fpsDisplay.textContent = Math.round(fps) + " FPS";
+		}
+		framesThisSecond++;
+	}
+}
+
+const maxFPS = 60;
+const timestep = 1000/maxFPS;
+const allowedTimeStepVariance = 1;
+let lastUpdateTime = 0;
+let delta = 1;
+let running = false,
+    started = false,
+    currentRAF = 0;
+
+var canvas, ctx;
+var canvasWidth, canvasHeight;
+var boundaryLeft, boundaryRight, boundaryTop, boundaryBottom;
+
+let gravity = 0.001;
+let balls = [];
+let mouseTouchObj = {
+	oldX : 0,
+	oldY : 0,
+	x : 0,
+	y : 0,
+	heldObj : null,
+	
+}
+let heldObj;
+
+document.addEventListener('DOMContentLoaded', function() {
+	//initialize stage and tools
+	canvas = document.querySelector("#myCanvas");
+	ctx = canvas.getContext("2d");
+	canvasWidth = canvas.width;
+	canvasHeight = canvas.height;
+	boundaryLeft = 0;
+	boundaryRight = canvas.width;
+	boundaryTop = 0;
+	boundaryBottom = canvas.height;
+	
+	myFPSCounter = new fpsCounter(); //fps-counter.js
+	
+	canvas.addEventListener("mousemove", function (e) {
+		var mousePos = getInputPosition(e.target, e);
+		var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+		var msgTarget = document.querySelector("#desc-one");
+		msgTarget.innerHTML = message;
+		mouseTouchInput('move', e)
+	}, false);
+	canvas.addEventListener("mousedown", function (e) {
+		mouseTouchInput('down', e)
+	}, false);
+	window.addEventListener("mouseup", function (e) {
+		mouseTouchInput('up', e)
+	}, false);
+	canvas.addEventListener("mouseout", function (e) {
+		mouseTouchInput('out', e)
+	}, false);
+	canvas.addEventListener("touchstart", function (e) {
+		mouseTouchInput('down', e)
+	}, false);
+	canvas.addEventListener("touchmove", function (e) {
+        e.preventDefault();
+		mouseTouchInput('move', e)
+	}, false);
+	window.addEventListener("touchend", function (e) {
+        e.preventDefault();
+		mouseTouchInput('up', e)
+	}, false);
+	window.addEventListener("touchcancel", function (e) {
+        e.preventDefault();
+		mouseTouchInput('up', e)
+	}, false);
+	
+	init();
+});
+
+function init() {
+	//initialize stage objects
+	balls.push(new Ball(20, "#FF0000"));
+	balls[0].x = 250;
+	balls[0].y = 100;
+	balls[0].vx = 0;
+	balls[0].vy = 0;
+	//updateObjects(timestep);
+	//drawObjects(ctx, balls);
+	start();
+}
+
+function start() {
+	if (!started) {
+        started = true;
+        currentRAF = requestAnimationFrame(function(timestamp) {
+            //updateObjects();
+            running = true;
+            //lastUpdateTime = timestamp;
+            //lastFpsUpdate = timestamp;
+            //framesThisSecond = 0;
+            currentRAF = requestAnimationFrame(mainLoop);
+        });
+    }
+}
+function stop() {
+    running = false;
+    started = false;
+    cancelAnimationFrame(currentRAF);	
+}
+function panic() {
+    delta = 0;
+}
+function mainLoop(timestamp) {
+    currentRAF = requestAnimationFrame(mainLoop);
+	//fixed delta/timestep, multiple updates per frame===============================================================================
+	//console.log (timestamp, lastUpdateTime + (1000 / maxFPS), timestamp < lastUpdateTime + (1000 / maxFPS), (timestamp < lastUpdateTime + (1000 / maxFPS) - allowedTimeStepVariance))
+	if (timestamp < lastUpdateTime + (1000 / maxFPS) - allowedTimeStepVariance) { // Throttle the frame rate
+		//If the timestamp is only a little more than the next ideal frame, we would have to wait another cycle for the next update.
+		//I find that introducing 'allowedTimeStepVariance' will give some allowance and reduce frame skips.
+		//This should reduce the need to update multiple times per frame and give us smoother animations.
+		//After implementing this, it is easier to reach the desired FPS limit.
+        return; //stop here and wait for the next cycle
+    }
+	myFPSCounter.update(timestamp); //fps-counter.js
+	delta += timestamp - lastUpdateTime;
+    lastUpdateTime = timestamp;
+    var numUpdateSteps = 0;
+    while (delta >= timestep) { //run update multiple times per update, to prevent sudden jumps over obstables
+        updateObjects(timestep); //with the multiple updates per frame method, we use a fixed delta(timestep)
+        delta -= timestep;
+        if (++numUpdateSteps >= 240) { //too many updates in a frame
+            panic();
+            break;
+        }
+    }
+	drawObjects(ctx, balls); //draw only when updates have caught up
+	//fixed delta/timestep, multiple updates per frame===============================================================================
+	
+	/*
+	//dynamic delta/timestep, single updates per frame===============================================================================
+	delta = timestamp - lastUpdateTime;
+	//console.log("delta", delta)
+    if (delta > timestep) { // Throttle the frame rate
+		myFPSCounter.update(timestamp); //fps-counter.js
+        updateObjects(delta);
+		drawObjects(ctx, balls);
+        lastUpdateTime = timestamp - (delta % timestep); //adjust lastUpdateTime time
+    }
+	//dynamic delta/timestep, single updates per frame===============================================================================
+	*/
+}
+function updateObjects(updateDelta) {
+	moveObjects(updateDelta, balls);
+}
+function moveObjects(updateDelta, objArr) {
+	for (i = 0; i < objArr.length; i++) {
+		if (objArr[i].isMoving) {
+			objArr[i].vy += gravity * updateDelta; //do we apply delta to gravity? or acceleration in general?
+			objArr[i].vx *= objArr[i].drag;
+			objArr[i].vy *= objArr[i].drag;
+			objArr[i].x += objArr[i].vx * updateDelta;
+			objArr[i].y += objArr[i].vy * updateDelta;
+			
+			if (objArr[i].x + objArr[i].radius > boundaryRight) {
+				objArr[i].x = boundaryRight - objArr[i].radius;
+				objArr[i].vx = -objArr[i].vx * objArr[i].bounceFactor;
+			} else if (objArr[i].x - objArr[i].radius < boundaryLeft) {
+				objArr[i].x = boundaryLeft + objArr[i].radius;
+				objArr[i].vx = -objArr[i].vx * objArr[i].bounceFactor;
+			}
+			if (objArr[i].y + objArr[i].radius > boundaryBottom) {
+				objArr[i].y = boundaryBottom - objArr[i].radius;
+				objArr[i].vy = -objArr[i].vy * objArr[i].bounceFactor;
+			} else if (objArr[i].y - objArr[i].radius < boundaryTop) {
+				objArr[i].y = boundaryTop + objArr[i].radius;
+				objArr[i].vy = -objArr[i].vy * objArr[i].bounceFactor;
+			}
+		}
+	}
+	if (mouseTouchObj.heldObj) {
+		mouseTouchObj.heldObj.vx = (mouseTouchObj.heldObj.x - mouseTouchObj.oldX) / updateDelta;
+		mouseTouchObj.heldObj.vy = (mouseTouchObj.heldObj.y - mouseTouchObj.oldY) / updateDelta;
+		mouseTouchObj.oldX = mouseTouchObj.heldObj.x;
+		mouseTouchObj.oldY = mouseTouchObj.heldObj.y;
+	}
+}
+function clearObjects(ctx, objArr) {
+	ctx.clearRect(0, 0, canvasWidth, canvasHeight); //clear everything
+	//or clear objects only, useful when performance is an issue
+}
+function drawObjects(ctx, objArr) {
+	clearObjects(ctx, objArr);
+	for (i = 0; i < objArr.length; i++) {
+		objArr[i].draw(ctx);
+	}	
+}
+
+function mouseTouchInput(type, e) {
+	var inputPos = getInputPosition(canvas, e);
+	if (type == 'down') {
+		//simple hit detection for this test
+		for (i = 0; i < balls.length; i++) {
+			if ((inputPos.x >= balls[i].x - balls[i].radius && inputPos.x <= balls[i].x + balls[i].radius) && (inputPos.y >= balls[i].y - balls[i].radius && inputPos.y <= balls[i].y + balls[i].radius)) {
+				balls[i].isMoving = false;
+				mouseTouchObj.heldObj = balls[i];
+				mouseTouchObj.oldX = mouseTouchObj.heldObj.x;
+				mouseTouchObj.oldY = mouseTouchObj.heldObj.y;
+			}
+		}
+	}
+	if (type == 'up' || type == "out") {
+		if (mouseTouchObj.heldObj) {
+			mouseTouchObj.heldObj.isMoving = true;
+			mouseTouchObj.heldObj = null;
+		}
+	}
+	if (type == 'move') {
+		if (mouseTouchObj.heldObj) {
+			mouseTouchObj.heldObj.x = inputPos.x;
+			mouseTouchObj.heldObj.y = inputPos.y;
+		}
+	}
+}
+
+function getInputPosition(targetCanvas, e) {
+	var rect = targetCanvas.getBoundingClientRect();
+    var position = {x: null, y: null};
+    //if (Modernizr.touch) { //global variable detecting touch support
+	if (e.touches && e.touches.length > 0) {
+		position.x = e.touches[0].clientX - rect.left;
+		position.y = e.touches[0].clientY - rect.top;
+	} else {
+		position.x = e.clientX - rect.left;
+		position.y = e.clientY - rect.top;
+	}
+    return position;
+}
+//============================================Compatibility===================================================
+var requestAnimationFrame = typeof requestAnimationFrame === 'function' ? requestAnimationFrame : (function() {
+	var lastTimestamp = Date.now(),
+		now,
+		timeout;
+	return function(callback) {
+		now = Date.now();
+		timeout = Math.max(0, timestep - (now - lastTimestamp));
+		lastTimestamp = now + timeout;
+		return setTimeout(function() {
+			callback(now + timeout);
+		}, timeout);
+	};
+})(),
+
+cancelAnimationFrame = typeof cancelAnimationFrame === 'function' ? cancelAnimationFrame : clearTimeout;
+//============================================Compatibility===================================================
+
+document.addEventListener('DOMContentLoaded', function() { 
+				document.querySelector("#stop-btn").addEventListener("click", function (e) {
+					stop();
+				});
+			});
+// ]]></script>
+<div id="centered">
+<div id="main">
+<div id="board-holder">
+<div id="board" tabindex="0"><canvas height="300" id="myCanvas" width="500"></canvas></div>
+</div>
+<div><button id="stop-btn">stop</button></div>
+<div>
+<p class="desc" id="desc-one">test 1</p>
+<p class="desc" id="desc-two">test 2</p>
+</div>
+</div>
+</div><br />Brython << <a href='Brython.html'>Previous</a> <a href='網路連線設定.html'>Next</a> >> 網路連線設定</div></section></div></body></html>

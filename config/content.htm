@@ -11,7 +11,8 @@
 <p>分組倉儲：</p>
 <p><a href="https://github.com/mdewcm2019/wcm2019-task-g6">https://github.com/mdewcm2019/wcm2019-task-g6</a></p>
 <p>分組網站：</p>
-<p><a href="https://mdewcm2019.github.io/wcm2019-task-g6/content/index.html">https://mdewcm2019.github.io/wcm2019-task-g6/content/index.html</a></p><h1>實習任務</h1>
+<p><a href="https://mdewcm2019.github.io/wcm2019-task-g6/content/index.html">https://mdewcm2019.github.io/wcm2019-task-g6/content/index.html</a></p>
+<h1>實習任務</h1>
 <h2>測試1</h2>
 <p><button onclick="myFunction()">Try it</button></p>
 <p id="demo"></p>
@@ -228,144 +229,330 @@ brython({debug:1, pythonpath:['/static/']});
 <!-- 以下製作 button-->
 <div height="20" id="onegear_div" width="800"></div>
 <p><input id="n" type="text" value="22"/><br/> <button id="button">Set Number of Gears</button></p>
-<!-- 以下實際利用  Brython 繪圖-->
-<script type="text/python3">// <![CDATA[
-from browser import document as doc
-import math
-# deg 為角度轉為徑度的轉換因子
-deg = math.pi/180.
-# 定義 Spur 類別
-class Spur(object):
-    def __init__(self, ctx):
-        self.ctx = ctx
-  
-    def create_line(self, x1, y1, x2, y2, width=3, fill="red"):
-        self.ctx.beginPath()
-        self.ctx.lineWidth = width
-        self.ctx.moveTo(x1, y1)
-        self.ctx.lineTo(x2, y2)
-        self.ctx.strokeStyle = fill
-        self.ctx.stroke()
-  
-    # 定義一個繪正齒輪的繪圖函式
-    # midx 為齒輪圓心 x 座標
-    # midy 為齒輪圓心 y 座標
-    # rp 為節圓半徑, n 為齒數
-    # pa 為壓力角 (deg)
-    # rot 為旋轉角 (deg)
-    # 已經針對 n 大於等於 52 齒時的繪圖錯誤修正, 因為 base circle 與齒根圓大小必須進行判斷
-    def Gear(self, midx, midy, rp, n=20, pa=20, color="black"):
-        # 齒輪漸開線分成 15 線段繪製
-        imax = 15
-        # 在輸入的畫布上繪製直線, 由圓心到節圓 y 軸頂點畫一直線
-        self.create_line(midx, midy, midx, midy-rp)
-        # a 為模數 (代表公制中齒的大小), 模數為節圓直徑(稱為節徑)除以齒數
-        # 模數也就是齒冠大小
-        a=2*rp/n
-        # d 為齒根大小, 為模數的 1.157 或 1.25倍, 這裡採 1.25 倍
-        d=2.5*rp/n
-        # ra 為齒輪的外圍半徑
-        ra=rp+a
-        # rb 則為齒輪的基圓半徑
-        # 基圓為漸開線長齒之基準圓
-        rb=rp*math.cos(pa*deg)
-        # rd 為齒根圓半徑
-        rd=rp-d
-        # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
-        # dr 則為基圓到齒頂圓半徑分成 imax 段後的每段半徑增量大小
-        # 將圓弧分成 imax 段來繪製漸開線
-        # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
-        if rd>rb:
-            dr = (ra-rd)/imax
-        else:
-            dr=(ra-rb)/imax
-        # tan(pa*deg)-pa*deg 為漸開線函數
-        sigma=math.pi/(2*n)+math.tan(pa*deg)-pa*deg
-        for j in range(n):
-            ang=-2.*j*math.pi/n+sigma
-            ang2=2.*j*math.pi/n+sigma
-            lxd=midx+rd*math.sin(ang2-2.*math.pi/n)
-            lyd=midy-rd*math.cos(ang2-2.*math.pi/n)
-            for i in range(imax+1):
-                # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
-                if rd>rb:
-                    r=rd+i*dr
-                else:
-                    r=rb+i*dr
-                theta=math.sqrt((r*r)/(rb*rb)-1.)
-                alpha=theta-math.atan(theta)
-                xpt=r*math.sin(alpha-ang)
-                ypt=r*math.cos(alpha-ang)
-                xd=rd*math.sin(-ang)
-                yd=rd*math.cos(-ang)
-                # i=0 時, 繪線起點由齒根圓上的點, 作為起點
-                if(i==0):
-                    last_x = midx+xd
-                    last_y = midy-yd
-                # 由左側齒根圓作為起點, 除第一點 (xd,yd) 齒根圓上的起點外, 其餘的 (xpt,ypt)則為漸開線上的分段點
-                self.create_line((midx+xpt),(midy-ypt),(last_x),(last_y),fill=color)
-                # 最後一點, 則為齒頂圓
-                if(i==imax):
-                    lfx=midx+xpt
-                    lfy=midy-ypt
-                last_x = midx+xpt
-                last_y = midy-ypt
-            # the line from last end of dedendum point to the recent
-            # end of dedendum point
-            # lxd 為齒根圓上的左側 x 座標, lyd 則為 y 座標
-            # 下列為齒根圓上用來近似圓弧的直線
-            self.create_line((lxd),(lyd),(midx+xd),(midy-yd),fill=color)
-            for i in range(imax+1):
-                # 當 rd 大於 rb 時, 漸開線並非畫至 rb, 而是 rd
-                if rd>rb:
-                    r=rd+i*dr
-                else:
-                    r=rb+i*dr
-                theta=math.sqrt((r*r)/(rb*rb)-1.)
-                alpha=theta-math.atan(theta)
-                xpt=r*math.sin(ang2-alpha)
-                ypt=r*math.cos(ang2-alpha)
-                xd=rd*math.sin(ang2)
-                yd=rd*math.cos(ang2)
-                # i=0 時, 繪線起點由齒根圓上的點, 作為起點
-                if(i==0):
-                    last_x = midx+xd
-                    last_y = midy-yd
-                # 由右側齒根圓作為起點, 除第一點 (xd,yd) 齒根圓上的起點外, 其餘的 (xpt,ypt)則為漸開線上的分段點
-                self.create_line((midx+xpt),(midy-ypt),(last_x),(last_y),fill=color)
-                # 最後一點, 則為齒頂圓
-                if(i==imax):
-                    rfx=midx+xpt
-                    rfy=midy-ypt
-                last_x = midx+xpt
-                last_y = midy-ypt
-            # lfx 為齒頂圓上的左側 x 座標, lfy 則為 y 座標
-            # 下列為齒頂圓上用來近似圓弧的直線
-            self.create_line(lfx,lfy,rfx,rfy,fill=color)
-canvas = doc['onegear']
-ctx = canvas.getContext("2d")
-  
-# 以 button 驅動的事件函式
-def setgearnumber(e):
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    x = (canvas.width)/2
-    y = (canvas.height)/2
-    if doc["n"].value.isdigit():
-        n1 = int(doc["n"].value)
-    else:
-        n1= 25
-    # 設定齒輪參數
-    x = (canvas.width)/2
-    y = (canvas.height)/2
-    r = 0.6*(canvas.height/2)
-    pa = 20
-    # 繪出齒輪
-    Spur(ctx).Gear(x, y, r, n1, pa, "blue")
-#判定 button
-setgearnumber(True)
-doc['button'].bind('click',setgearnumber)
+<p></p>
+<h2>Ball</h2>
+<p></p>
+<script>// <![CDATA[
+class Ball {
+	constructor(radius, color) {
+		this.radius = radius;
+		this.color = color;
+		this.isMoving = true;
+		this.x = 0;
+		this.y = 0;
+		this.vx = 0;
+		this.vy = 0;
+		this.mass = 1;
+		this.drag = 0.995;
+		this.bounceFactor = 0.8;
+		this.init();
+	}
+	init() {
+		
+		/*graphics.beginFill(color);
+		graphics.drawCircle(0, 0, radius);
+		graphics.endFill();*/
+	}
+	draw(ctx) {
+		ctx.beginPath();
+		ctx.strokeStyle = this.color;
+		ctx.fillStyle = this.color;
+		ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+		ctx.stroke();
+		ctx.fill();
+		ctx.closePath();
+	}
+} // ends class
+
+var fpsCounter = function() {
+	var fps = 60,
+		framesThisSecond = 0,
+		lastFpsUpdate = 0,
+		fpsDecay = 0.25,
+		fpsUpdateTime = 1000;
+	var fpsDisplay = document.createElement('div');
+	fpsDisplay.style.cssText = 'position:fixed;left:0;top:0;opacity:0.7;z-index:9999;font-family:sans-serif;font-size:16px;font-weight:bold;color:#00F;';
+	fpsDisplay.appendChild(document.createTextNode(" FPS"));
+	document.body.appendChild(fpsDisplay);
+	this.update = function(timestamp) {
+		if (typeof timestamp === 'undefined') { timestamp = performance.now() }; //if no timestamp is given, default to performance.now()
+		if (timestamp > lastFpsUpdate + fpsUpdateTime) { //update every fpsUpdateTime
+			fps = fpsDecay * framesThisSecond + (1 - fpsDecay) * fps; //compute the new FPS
+			lastFpsUpdate = timestamp;
+			framesThisSecond = 0;
+			fpsDisplay.textContent = Math.round(fps) + " FPS";
+		}
+		framesThisSecond++;
+	}
+}
+
+const maxFPS = 60;
+const timestep = 1000/maxFPS;
+const allowedTimeStepVariance = 1;
+let lastUpdateTime = 0;
+let delta = 1;
+let running = false,
+    started = false,
+    currentRAF = 0;
+
+var canvas, ctx;
+var canvasWidth, canvasHeight;
+var boundaryLeft, boundaryRight, boundaryTop, boundaryBottom;
+
+let gravity = 0.001;
+let balls = [];
+let mouseTouchObj = {
+	oldX : 0,
+	oldY : 0,
+	x : 0,
+	y : 0,
+	heldObj : null,
+	
+}
+let heldObj;
+
+document.addEventListener('DOMContentLoaded', function() {
+	//initialize stage and tools
+	canvas = document.querySelector("#myCanvas");
+	ctx = canvas.getContext("2d");
+	canvasWidth = canvas.width;
+	canvasHeight = canvas.height;
+	boundaryLeft = 0;
+	boundaryRight = canvas.width;
+	boundaryTop = 0;
+	boundaryBottom = canvas.height;
+	
+	myFPSCounter = new fpsCounter(); //fps-counter.js
+	
+	canvas.addEventListener("mousemove", function (e) {
+		var mousePos = getInputPosition(e.target, e);
+		var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+		var msgTarget = document.querySelector("#desc-one");
+		msgTarget.innerHTML = message;
+		mouseTouchInput('move', e)
+	}, false);
+	canvas.addEventListener("mousedown", function (e) {
+		mouseTouchInput('down', e)
+	}, false);
+	window.addEventListener("mouseup", function (e) {
+		mouseTouchInput('up', e)
+	}, false);
+	canvas.addEventListener("mouseout", function (e) {
+		mouseTouchInput('out', e)
+	}, false);
+	canvas.addEventListener("touchstart", function (e) {
+		mouseTouchInput('down', e)
+	}, false);
+	canvas.addEventListener("touchmove", function (e) {
+        e.preventDefault();
+		mouseTouchInput('move', e)
+	}, false);
+	window.addEventListener("touchend", function (e) {
+        e.preventDefault();
+		mouseTouchInput('up', e)
+	}, false);
+	window.addEventListener("touchcancel", function (e) {
+        e.preventDefault();
+		mouseTouchInput('up', e)
+	}, false);
+	
+	init();
+});
+
+function init() {
+	//initialize stage objects
+	balls.push(new Ball(20, "#FF0000"));
+	balls[0].x = 250;
+	balls[0].y = 100;
+	balls[0].vx = 0;
+	balls[0].vy = 0;
+	//updateObjects(timestep);
+	//drawObjects(ctx, balls);
+	start();
+}
+
+function start() {
+	if (!started) {
+        started = true;
+        currentRAF = requestAnimationFrame(function(timestamp) {
+            //updateObjects();
+            running = true;
+            //lastUpdateTime = timestamp;
+            //lastFpsUpdate = timestamp;
+            //framesThisSecond = 0;
+            currentRAF = requestAnimationFrame(mainLoop);
+        });
+    }
+}
+function stop() {
+    running = false;
+    started = false;
+    cancelAnimationFrame(currentRAF);	
+}
+function panic() {
+    delta = 0;
+}
+function mainLoop(timestamp) {
+    currentRAF = requestAnimationFrame(mainLoop);
+	//fixed delta/timestep, multiple updates per frame===============================================================================
+	//console.log (timestamp, lastUpdateTime + (1000 / maxFPS), timestamp < lastUpdateTime + (1000 / maxFPS), (timestamp < lastUpdateTime + (1000 / maxFPS) - allowedTimeStepVariance))
+	if (timestamp < lastUpdateTime + (1000 / maxFPS) - allowedTimeStepVariance) { // Throttle the frame rate
+		//If the timestamp is only a little more than the next ideal frame, we would have to wait another cycle for the next update.
+		//I find that introducing 'allowedTimeStepVariance' will give some allowance and reduce frame skips.
+		//This should reduce the need to update multiple times per frame and give us smoother animations.
+		//After implementing this, it is easier to reach the desired FPS limit.
+        return; //stop here and wait for the next cycle
+    }
+	myFPSCounter.update(timestamp); //fps-counter.js
+	delta += timestamp - lastUpdateTime;
+    lastUpdateTime = timestamp;
+    var numUpdateSteps = 0;
+    while (delta >= timestep) { //run update multiple times per update, to prevent sudden jumps over obstables
+        updateObjects(timestep); //with the multiple updates per frame method, we use a fixed delta(timestep)
+        delta -= timestep;
+        if (++numUpdateSteps >= 240) { //too many updates in a frame
+            panic();
+            break;
+        }
+    }
+	drawObjects(ctx, balls); //draw only when updates have caught up
+	//fixed delta/timestep, multiple updates per frame===============================================================================
+	
+	/*
+	//dynamic delta/timestep, single updates per frame===============================================================================
+	delta = timestamp - lastUpdateTime;
+	//console.log("delta", delta)
+    if (delta > timestep) { // Throttle the frame rate
+		myFPSCounter.update(timestamp); //fps-counter.js
+        updateObjects(delta);
+		drawObjects(ctx, balls);
+        lastUpdateTime = timestamp - (delta % timestep); //adjust lastUpdateTime time
+    }
+	//dynamic delta/timestep, single updates per frame===============================================================================
+	*/
+}
+function updateObjects(updateDelta) {
+	moveObjects(updateDelta, balls);
+}
+function moveObjects(updateDelta, objArr) {
+	for (i = 0; i < objArr.length; i++) {
+		if (objArr[i].isMoving) {
+			objArr[i].vy += gravity * updateDelta; //do we apply delta to gravity? or acceleration in general?
+			objArr[i].vx *= objArr[i].drag;
+			objArr[i].vy *= objArr[i].drag;
+			objArr[i].x += objArr[i].vx * updateDelta;
+			objArr[i].y += objArr[i].vy * updateDelta;
+			
+			if (objArr[i].x + objArr[i].radius > boundaryRight) {
+				objArr[i].x = boundaryRight - objArr[i].radius;
+				objArr[i].vx = -objArr[i].vx * objArr[i].bounceFactor;
+			} else if (objArr[i].x - objArr[i].radius < boundaryLeft) {
+				objArr[i].x = boundaryLeft + objArr[i].radius;
+				objArr[i].vx = -objArr[i].vx * objArr[i].bounceFactor;
+			}
+			if (objArr[i].y + objArr[i].radius > boundaryBottom) {
+				objArr[i].y = boundaryBottom - objArr[i].radius;
+				objArr[i].vy = -objArr[i].vy * objArr[i].bounceFactor;
+			} else if (objArr[i].y - objArr[i].radius < boundaryTop) {
+				objArr[i].y = boundaryTop + objArr[i].radius;
+				objArr[i].vy = -objArr[i].vy * objArr[i].bounceFactor;
+			}
+		}
+	}
+	if (mouseTouchObj.heldObj) {
+		mouseTouchObj.heldObj.vx = (mouseTouchObj.heldObj.x - mouseTouchObj.oldX) / updateDelta;
+		mouseTouchObj.heldObj.vy = (mouseTouchObj.heldObj.y - mouseTouchObj.oldY) / updateDelta;
+		mouseTouchObj.oldX = mouseTouchObj.heldObj.x;
+		mouseTouchObj.oldY = mouseTouchObj.heldObj.y;
+	}
+}
+function clearObjects(ctx, objArr) {
+	ctx.clearRect(0, 0, canvasWidth, canvasHeight); //clear everything
+	//or clear objects only, useful when performance is an issue
+}
+function drawObjects(ctx, objArr) {
+	clearObjects(ctx, objArr);
+	for (i = 0; i < objArr.length; i++) {
+		objArr[i].draw(ctx);
+	}	
+}
+
+function mouseTouchInput(type, e) {
+	var inputPos = getInputPosition(canvas, e);
+	if (type == 'down') {
+		//simple hit detection for this test
+		for (i = 0; i < balls.length; i++) {
+			if ((inputPos.x >= balls[i].x - balls[i].radius && inputPos.x <= balls[i].x + balls[i].radius) && (inputPos.y >= balls[i].y - balls[i].radius && inputPos.y <= balls[i].y + balls[i].radius)) {
+				balls[i].isMoving = false;
+				mouseTouchObj.heldObj = balls[i];
+				mouseTouchObj.oldX = mouseTouchObj.heldObj.x;
+				mouseTouchObj.oldY = mouseTouchObj.heldObj.y;
+			}
+		}
+	}
+	if (type == 'up' || type == "out") {
+		if (mouseTouchObj.heldObj) {
+			mouseTouchObj.heldObj.isMoving = true;
+			mouseTouchObj.heldObj = null;
+		}
+	}
+	if (type == 'move') {
+		if (mouseTouchObj.heldObj) {
+			mouseTouchObj.heldObj.x = inputPos.x;
+			mouseTouchObj.heldObj.y = inputPos.y;
+		}
+	}
+}
+
+function getInputPosition(targetCanvas, e) {
+	var rect = targetCanvas.getBoundingClientRect();
+    var position = {x: null, y: null};
+    //if (Modernizr.touch) { //global variable detecting touch support
+	if (e.touches && e.touches.length > 0) {
+		position.x = e.touches[0].clientX - rect.left;
+		position.y = e.touches[0].clientY - rect.top;
+	} else {
+		position.x = e.clientX - rect.left;
+		position.y = e.clientY - rect.top;
+	}
+    return position;
+}
+//============================================Compatibility===================================================
+var requestAnimationFrame = typeof requestAnimationFrame === 'function' ? requestAnimationFrame : (function() {
+	var lastTimestamp = Date.now(),
+		now,
+		timeout;
+	return function(callback) {
+		now = Date.now();
+		timeout = Math.max(0, timestep - (now - lastTimestamp));
+		lastTimestamp = now + timeout;
+		return setTimeout(function() {
+			callback(now + timeout);
+		}, timeout);
+	};
+})(),
+
+cancelAnimationFrame = typeof cancelAnimationFrame === 'function' ? cancelAnimationFrame : clearTimeout;
+//============================================Compatibility===================================================
+
+document.addEventListener('DOMContentLoaded', function() { 
+				document.querySelector("#stop-btn").addEventListener("click", function (e) {
+					stop();
+				});
+			});
 // ]]></script>
-<h1>網路連線設定</h1>
+<div id="centered">
+<div id="main">
+<div id="board-holder">
+<div id="board" tabindex="0"><canvas height="300" id="myCanvas" width="500"></canvas></div>
+</div>
+<div><button id="stop-btn">stop</button></div>
+<div>
+<p class="desc" id="desc-one">test 1</p>
+<p class="desc" id="desc-two">test 2</p>
+</div>
+</div>
+</div><h1>網路連線設定</h1>
 <p><span>了解機械設計系電腦輔助設計室電腦的網路設定, 其中包括 IPv4 網路與 IPv6 網路設定.</span><br/><br/><span>正常情況下, 電腦輔助設計室中的 64 台電腦透過 IPv4 協定下的 DHCP 與 NAT 上網, 各電腦以 DHCP client 取得 192.168.1.* 的網路位址, 然後以 NAT 的一組外部 IP 上網, 通常必須設定 Proxy Server 為 http://proxy.kmol.info:3128 後上網會比較順暢, 但若 8 台 Proxy Servers 無法正常運作時, 則取消 Proxy Server 的設定.</span><br/><br/><span>瀏覽器代理主機設定</span><br/><br/><span>了解如何設定 Google Chrome 與 Firefox 瀏覽器的代理主機設定.</span><br/><br/><span>申請 Github 帳號</span><br/><br/><span>利用 Gmail 帳號申請 Github 帳號, 申請後利用電子郵箱收信進行確認後, 就可以在 Github 上建立倉儲。</span></p>
 <h2>網際網路故障排除</h2>
 <p></p>
@@ -1087,7 +1274,8 @@ ctx.fillStyle = '#fff'
 ctx.fill()
 &lt;/script&gt;
 </pre>
-<p></p><h2>網際簡報</h2>
+<p></p>
+<h2>網際簡報</h2>
 <p>CMSimfly 中採用 <a href="https://revealjs.com/#/">Reveal.js</a> 作為網際簡報, 其中的維護檔案位於 config/reveal.js, 而對應的簡報檔案則位於 reveal 目錄中.</p>
 <h2>網誌編輯</h2>
 <p>CMSimfly 彩用 <a href="https://blog.getpelican.com/">Pelican blog</a> 系統, 編輯檔案位於 config/pelican.leo, 對應的</p>
@@ -1281,11 +1469,11 @@ From git@github.com:schacon/simplegit
 <script src="/static/gearUtils-05.js"></script>
 <!-- for Konva 程式庫 -->
 <script src="/static/konva.min.js"></script>
-<script>
+<script>// <![CDATA[
 window.onload=function(){
 brython({debug:1, pythonpath:['./../static/']});
 }
-</script>
+// ]]></script>
 </p>
 <p><!-- 導入 FileSaver 與 filereader --></p>
 <p>
@@ -1301,18 +1489,18 @@ brython({debug:1, pythonpath:['./../static/']});
 </p>
 <p><!-- 請注意, 這裡使用 Javascript 將 localStorage["py_src"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
 <p>
-<script type="text/javascript">
+<script type="text/javascript">// <![CDATA[
 function doSave(storage_id, filename){
     var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
     filename = document.getElementById(filename).value
     saveAs(blob, filename+".py");
 }
-</script>
+// ]]></script>
 </p>
 <h4>開始練習 print() 用法, 並著手建立函式</h4>
 <p><!-- 印出版次與關鍵字程式 --></p>
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 from browser import html
 import ace
@@ -1348,7 +1536,7 @@ doc['kw_run'].bind('click', Ace.run)
 doc['kw_show_console'].bind('click', Ace.show_console)
 doc['kw_clear_console'].bind('click', Ace.clear_console)
 doc['clear_bd'].bind('click', clear_bd)
-</script>
+// ]]></script>
 </p>
 <p><!-- 用來顯示程式碼的 editor 區域 --></p>
 <div id="kw_editor" style="width: 600px; height: 300px;"></div>
@@ -1359,7 +1547,7 @@ doc['clear_bd'].bind('click', clear_bd)
 <div id="brython_div"></div>
 <div class="col-md-0" height="1" id="graphics-column" width="1"></div>
 <p><!-- ****************************** keyword start -->
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 # 導入位於 static 目錄下的 beditor.py 
 import beditor
@@ -1376,12 +1564,12 @@ print("Python keywords: ", keyword.kwlist)
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "keyword" 的按鈕點按時, 執行 kw1 物件中的 prog 方法
 doc["keyword"].bind('click', kw1.prog)
-</script>
+// ]]></script>
 </p>
 <p><!-- ****************************** keyword end --></p>
 <p><!-- ***************************** slide ex1 start --></p>
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Ex1 = beditor.editor("""# 導入 Ex1 原始碼
@@ -1418,12 +1606,12 @@ print(y)
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "ex1" 的按鈕點按時, 執行 Ex1 物件中的 prog 方法
 doc["ex1"].bind('click', Ex1.prog)
-</script>
+// ]]></script>
 </p>
 <p><!-- ***************************** slide ex1 end --></p>
 <p><!-- ***************************** slide ex2 start --></p>
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Ex2 = beditor.editor("""# Python 的內建資料型別
@@ -1455,12 +1643,12 @@ print(type(2+3j))        # complex  (complex number) (we may not see this type)
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "ex2" 的按鈕點按時, 執行 Ex2 物件中的 prog 方法
 doc["ex2"].bind('click', Ex2.prog)
-</script>
+// ]]></script>
 </p>
 <p><!-- ***************************** slide ex2 end --></p>
 <p><!-- ***************************** slide ex3 start --></p>
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Ex3 = beditor.editor("""# Python 的內建常數與函式
@@ -1619,12 +1807,12 @@ print(isNumber(1), isNumber(1.1), isNumber(1+2j), isNumber("wow"))
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "ex3" 的按鈕點按時, 執行 Ex3 物件中的 prog 方法
 doc["ex3"].bind('click', Ex3.prog)
-</script>
+// ]]></script>
 </p>
 <p><!-- ***************************** slide ex3 end --></p>
 <p><!-- ***************************** slide ex4 start --></p>
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Ex4 = beditor.editor("""# Python 函式
@@ -1832,12 +2020,12 @@ print(f(5,1)) # 6
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "ex4" 的按鈕點按時, 執行 Ex4 物件中的 prog 方法
 doc["ex4"].bind('click', Ex4.prog)
-</script>
+// ]]></script>
 </p>
 <p><!-- ***************************** slide ex4 end --></p>
 <!-- line drawing start -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Draw = beditor.editor("""# Line drawing
@@ -1895,13 +2083,13 @@ ctx.stroke()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "draw" 的按鈕點按時, 執行 Draw 物件中的 prog 方法
 doc["draw"].bind('click', Draw.prog)
-</script>
+// ]]></script>
 </p>
 <!-- line drawing ends -->
 <p></p>
 <!-- flag ex start -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Flag = beditor.editor("""# 畫中華民國國旗
@@ -1965,13 +2153,13 @@ ctx.fill()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "flag" 的按鈕點按時, 執行 Flag 物件中的 prog 方法
 doc["flag"].bind('click', Flag.prog)
-</script>
+// ]]></script>
 </p>
 <!-- flag ex ends -->
 <p></p>
 <!-- bunny start -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Bunny = beditor.editor("""# Ggame
@@ -2053,13 +2241,13 @@ app.run()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "bunny" 的按鈕點按時, 執行 Bunny 物件中的 prog 方法
 doc["bunny"].bind('click', Bunny.prog)
-</script>
+// ]]></script>
 </p>
 <!-- bunny ends -->
 <p></p>
 <!-- clear canvas start -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Clear = beditor.editor("""# 清除畫布
@@ -2069,13 +2257,13 @@ brython_div.clear()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "clear" 的按鈕點按時, 執行 Clear 物件中的 prog 方法
 doc["clear"].bind('click', Clear.prog)
-</script>
+// ]]></script>
 </p>
 <!-- clear canvas ends -->
 <p></p>
 <!-- cango spur gears start -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Spur = beditor.editor("""# Cango Spur Gears
@@ -2199,13 +2387,13 @@ set_interval(draw, 2)
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "spur" 的按鈕點按時, 執行 Spur 物件中的 prog 方法
 doc["spur"].bind('click', Spur.prog)
-</script>
+// ]]></script>
 </p>
 <!-- cango spur gears ends -->
 <p></p>
 <!-- temp convert start -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Temp = beditor.editor("""# Temperature Conversion
@@ -2250,13 +2438,13 @@ else:
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "temp" 的按鈕點按時, 執行 Temp 物件中的 prog 方法
 doc["temp"].bind('click', Temp.prog)
-</script>
+// ]]></script>
 </p>
 <!-- temp convert ends -->
 <p></p>
 <!-- forloop start -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Forloop = beditor.editor("""# For loop
@@ -2265,13 +2453,13 @@ for i in range(5):
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "forloop" 的按鈕點按時, 執行 Forloop 物件中的 prog 方法
 doc["forloop"].bind('click', Forloop.prog)
-</script>
+// ]]></script>
 </p>
 <!-- forloop ends -->
 <p></p>
 <!-- guess start -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Guess = beditor.editor("""# 猜數字遊戲
@@ -2302,13 +2490,13 @@ alert("猜對了！答案為" + str(標準答案) + ", 總共猜了" + str(猜�
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "guess" 的按鈕點按時, 執行 Guess 物件中的 prog 方法
 doc["guess"].bind('click', Guess.prog)
-</script>
+// ]]></script>
 </p>
 <!-- guess ends -->
 <p></p>
 <!-- autoguess start -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Autoguess = beditor.editor("""# 程式自動猜數字遊戲
@@ -2356,13 +2544,13 @@ id4 <= "平均次數: " + str(平均猜測次數)
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "autoguess" 的按鈕點按時, 執行 Autoguess 物件中的 prog 方法
 doc["autoguess"].bind('click', Autoguess.prog)
-</script>
+// ]]></script>
 </p>
 <!-- autoguess ends -->
 <p></p>
 <!-- lottery start -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Lottery = beditor.editor("""# 大樂透電腦選號
@@ -2388,13 +2576,13 @@ for i in range(1, total + 1):
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "lottery" 的按鈕點按時, 執行 Lottery 物件中的 prog 方法
 doc["lottery"].bind('click', Lottery.prog)
-</script>
+// ]]></script>
 </p>
 <!-- lottery ends -->
 <p></p>
 <!-- 台灣威力彩 start -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Weleadlottery = beditor.editor("""# 威力彩電腦選號
@@ -2422,13 +2610,13 @@ for i in range(1, total + 1):
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "lottery" 的按鈕點按時, 執行 Lottery 物件中的 prog 方法
 doc["weleadlottery"].bind('click', Weleadlottery.prog)
-</script>
+// ]]></script>
 </p>
 <!-- 台灣威力彩 ends -->
 <p></p>
 <!-- bezier starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Bezier = beditor.editor("""# Cango Bezier 繪圖
@@ -2521,13 +2709,13 @@ drawCurve()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "bezier" 的按鈕點按時, 執行 Bezier 物件中的 prog 方法
 doc["bezier"].bind('click', Bezier.prog)
-</script>
+// ]]></script>
 </p>
 <!-- bezier ends -->
 <p></p>
 <!-- turtle1 starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Turtle1 = beditor.editor("""# Turtle1 繪圖
@@ -2563,13 +2751,13 @@ turtle.done()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "turtle1" 的按鈕點按時, 執行 Turtle1 物件中的 prog 方法
 doc["turtle1"].bind('click', Turtle1.prog)
-</script>
+// ]]></script>
 </p>
 <!-- turtle1 ends -->
 <p></p>
 <!-- turtle2 starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Turtle2 = beditor.editor("""# Turtle2 繪圖
@@ -2588,13 +2776,13 @@ turtle.done()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "turtle2" 的按鈕點按時, 執行 Turtle2 物件中的 prog 方法
 doc["turtle2"].bind('click', Turtle2.prog)
-</script>
+// ]]></script>
 </p>
 <!-- turtle2 ends -->
 <p></p>
 <!-- turtle3 starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Turtle3 = beditor.editor("""# Turtle3 繪圖
@@ -2621,13 +2809,13 @@ turtle.done()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "turtle3" 的按鈕點按時, 執行 Turtle3 物件中的 prog 方法
 doc["turtle3"].bind('click', Turtle3.prog)
-</script>
+// ]]></script>
 </p>
 <!-- turtle3 ends -->
 <p></p>
 <!-- turtle4 starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Turtle4 = beditor.editor("""# Turtle4 繪圖
@@ -2681,13 +2869,13 @@ turtle.done()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "turtle4" 的按鈕點按時, 執行 Turtle4 物件中的 prog 方法
 doc["turtle4"].bind('click', Turtle4.prog)
-</script>
+// ]]></script>
 </p>
 <!-- turtle4 ends -->
 <p></p>
 <!-- turtle5 starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Turtle5 = beditor.editor("""# Turtle5 繪圖
@@ -2799,13 +2987,13 @@ turtle.done()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "turtle5" 的按鈕點按時, 執行 Turtle5 物件中的 prog 方法
 doc["turtle5"].bind('click', Turtle5.prog)
-</script>
+// ]]></script>
 </p>
 <!-- turtle5 ends -->
 <p></p>
 <!-- turtle6 starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Turtle6 = beditor.editor("""# Turtle6 繪圖
@@ -2829,13 +3017,13 @@ turtle.done()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "turtle6" 的按鈕點按時, 執行 Turtle6 物件中的 prog 方法
 doc["turtle6"].bind('click', Turtle6.prog)
-</script>
+// ]]></script>
 </p>
 <!-- turtle6 ends -->
 <p></p>
 <!-- turtle7 starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Turtle7 = beditor.editor("""# Turtle7 繪圖
@@ -2870,13 +3058,13 @@ turtle.done()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "turtle7" 的按鈕點按時, 執行 Turtle7 物件中的 prog 方法
 doc["turtle7"].bind('click', Turtle7.prog)
-</script>
+// ]]></script>
 </p>
 <!-- turtle7 ends -->
 <p></p>
 <!-- turtle8 starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Turtle8 = beditor.editor("""# Turtle8 繪圖
@@ -2911,13 +3099,13 @@ turtle.done()
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "turtle8" 的按鈕點按時, 執行 Turtle8 物件中的 prog 方法
 doc["turtle8"].bind('click', Turtle8.prog)
-</script>
+// ]]></script>
 </p>
 <!-- turtle8 ends -->
 <p></p>
 <!-- konva1 starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Konva1 = beditor.editor("""# Konva1 繪圖
@@ -2965,13 +3153,13 @@ stage.add(layer)
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "konva1" 的按鈕點按時, 執行 Konva1 物件中的 prog 方法
 doc["konva1"].bind('click', Konva1.prog)
-</script>
+// ]]></script>
 </p>
 <!-- konva1 ends -->
 <p></p>
 <!-- ycqsort starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Ycqsort = beditor.editor("""# Ycombinator quicksort example
@@ -2988,13 +3176,13 @@ print(quicksort([1, 3, 5, 4, 1, 3, 2]))
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "ycqsort" 的按鈕點按時, 執行 Ycqsort 物件中的 prog 方法
 doc["ycqsort"].bind('click', Ycqsort.prog)
-</script>
+// ]]></script>
 </p>
 <!-- ycqsort ends -->
 <p></p>
 <!-- ball starts -->
 <p>
-<script type="text/python3">
+<script type="text/python3">// <![CDATA[
 from browser import document as doc
 import beditor
 Ball = beditor.editor("""# Ggame ball example
@@ -3056,14 +3244,15 @@ myapp.run(step)
 """, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 # id 為 "ball" 的按鈕點按時, 執行 Ball 物件中的 prog 方法
 doc["ball"].bind('click', Ball.prog)
-</script>
+// ]]></script>
 </p>
 <!-- ball ends -->
 <p><button id="keyword">Keyword</button><button id="ex1">Ex1</button><button id="ex2">Ex2</button><button id="ex3">Ex3</button><button id="ex4">Ex4</button><button id="forloop">Ex5</button><button id="guess">Guess</button><button id="autoguess">Autoguess</button><button id="lottery">大樂透</button><button id="weleadlottery">威力彩</button><button id="temp">Temp</button><button id="draw">Draw</button><button id="flag">Flag</button><button id="bezier">Bezier</button><button id="turtle1">Turtle1</button><button id="turtle2">Turtle2</button><button id="turtle3">Turtle3</button><button id="turtle4">Turtle4</button><button id="turtle5">Turtle5</button><button id="turtle6">Turtle6</button><button id="turtle7">Turtle7</button><button id="turtle8">Turtle8</button><button id="konva1">Konva1</button><button id="bunny">Bunny</button><button id="ball">Ball</button><button id="spur">Spur</button><button id="ycqsort">Ycqsort</button><button id="clear">Clear</button></p>
 <h4>參考資料:</h4>
 <p><a href="/downloads/turtle_intro.pdf">turtle_intro.pdf</a></p>
 <p><a href="/downloads/turtle_intro2.pdf">turtle_intro2.pdf</a></p>
-<p>其他擷取程式的方式: <a href="http://mde.tw/2017springvcp/blog/web-based-python.html">http://mde.tw/2017springvcp/blog/web-based-python.html</a> </p><h1>Qt for Python</h1>
+<p>其他擷取程式的方式: <a href="http://mde.tw/2017springvcp/blog/web-based-python.html">http://mde.tw/2017springvcp/blog/web-based-python.html</a> </p>
+<h1>Qt for Python</h1>
 <p><a href="https://www.qt.io/qt-for-python">https://www.qt.io/qt-for-python</a> </p>
 <p><a href="https://build-system.fman.io/python-qt-tutorial">https://build-system.fman.io/python-qt-tutorial</a> </p>
 <p><a href="https://build-system.fman.io/pyqt-exe-creation/">https://build-system.fman.io/pyqt-exe-creation/</a> </p>
@@ -3074,4 +3263,5 @@ doc["ball"].bind('click', Ball.prog)
 </p>
 <div id="container"></div>
 <p>
-<script></script></p>
+<script></script>
+</p>
